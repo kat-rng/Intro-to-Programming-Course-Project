@@ -1,10 +1,8 @@
 classdef connectorLine
     % Line Values
     properties
-        pointX1 = 0;
-        pointX2 = 0;
-        pointY1 = 0;
-        pointY2 = 0;
+        point1;
+        point2;
         length;
         material;
         materialStrength;
@@ -13,12 +11,10 @@ classdef connectorLine
     % Add Methods
     methods
         function obj = connectorLine(point1, point2, mat, materialStr)
-            obj.pointX1 = point1.x;
-            obj.pointX2 = point2.x;
-            obj.pointY1 = point1.y;
-            obj.pointY2 = point2.y;
+            obj.point1 = point1;
+            obj.point2 = point2;
 
-            obj.length = sqrt((pointX1 - pointX2)^2 + (pointY1 - pointY2)^2);
+            obj.length = sqrt((point1.x - point2.x)^2 + (point1.y - point2.y)^2);
             obj.material = mat;
             obj.materialStrength = materialStr;
         end
