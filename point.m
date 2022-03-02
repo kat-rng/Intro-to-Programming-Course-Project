@@ -4,16 +4,29 @@ classdef point
         x = 0;
         y = 0;
         
-        %connected lines
+        %connected 
         cLines = {}; 
     end
     
+    % Add Methods
     methods
-        function obj = point(x,y,cLines)
+        % Constructor
+        function obj = point(x,y)
             obj.x = x;
             obj.y = y;
-            obj.cLines = cLines;
         end
-    end %methods
+    end
+
+    % Static Methods
+    methods (Static)
+        function del = delete()
+            del = 0;
+            try
+                clear obj;
+            catch 
+                del = 1;
+            end
+        end
+    end
     
 end
