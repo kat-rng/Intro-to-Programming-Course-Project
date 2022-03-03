@@ -44,3 +44,5 @@ editButton = uibutton(mainWindow, 'Text', "Stop Simulation and Edit", "Position"
 
 % Results Display
 resultLabel = uilabel(mainWindow, "Text", "Results:", "Position", [0.015 * appWidth, 0.3 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
+
+% Axes Manipulation via Clicking
