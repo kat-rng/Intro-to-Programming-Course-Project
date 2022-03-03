@@ -3,6 +3,7 @@ classdef point
         %position
         x = 0;
         y = 0;
+        fxd = false;
         
         %connected 
         cLines = {}; 
@@ -11,9 +12,13 @@ classdef point
     % Add Methods
     methods
         % Constructor
-        function obj = point(x,y)
+        function obj = point(x,y,fxd)
+            %The x and y coordinates of the point
             obj.x = x;
             obj.y = y;
+            
+            %whether the object is fixed
+            obj.fxd = fxd;
         end
     end
 
@@ -25,6 +30,18 @@ classdef point
                 clear obj;
             catch 
                 del = 1;
+            end
+        end
+        
+        function xy = forceToXY(forces, angles, xy)
+            % obtains the components of the forces
+            for i = 1:length(forces)
+                xy(1:2) = 0;
+                
+                %using trigonometry to find the sum of the two components 
+                %of the forces
+                xy(1) = xy(1) + forces(i)*cos(angles(i));
+                xy(2) = xy(2) + forces(i)*sin(angles(i));                
             end
         end
     end
