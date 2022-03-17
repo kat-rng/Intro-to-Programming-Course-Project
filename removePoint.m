@@ -12,7 +12,6 @@ function removePoint(obj, src)
 
     % Get point and make sure its close
     deletePt = getPoint();
-    disp("test");
     
     % Delete
     for i = 1:a
