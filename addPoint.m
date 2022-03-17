@@ -3,6 +3,8 @@ function addPoint(button, axes)
     disableAll(button);
     global currentState;
     global allPoints;
+    global allPlottedPoints;
+
     xVal = get(axes, 'XLim');
     yVal = get(axes, 'YLim');
     currentState = currentState + 1;
@@ -14,7 +16,7 @@ function addPoint(button, axes)
             x = round(x);
             y = round(y);
             if (button.String == "Click to Disable") && (xVal(1) < x) && (xVal(2) > x) && (yVal(1) < y) && (yVal(2) > y)
-                plot(axes, x, y, '.b', "LineWidth", 16);
+                allPlottedPoints = [allPlottedPoints, plot(axes, x, y, '.b', "LineWidth", 16)];
                 allPoints = [allPoints, point(x, y, false)];
             end
             if button.String == "Add Points"

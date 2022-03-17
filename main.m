@@ -10,10 +10,14 @@ clc; clear; close all;
 global currentState;
 global allPoints;
 global allButtons;
+global allPlottedPoints;
+global allPlottedLines;
 
 % Basic Variable Setup
 currentState = 0;
 allPoints = [];
+allPlottedPoints = [];
+allPlottedLines = [];
 
 %% Screen Generation
 % Default Screen Info
@@ -62,3 +66,4 @@ allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton,
 
 % Establish Commands
 pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
+pointRemoveButton.Callback = @removePoint;
