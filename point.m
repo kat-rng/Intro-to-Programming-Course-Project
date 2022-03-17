@@ -11,7 +11,7 @@ classdef point
     
     % Add Methods
     methods
-        % Constructor
+        % Constructors
         function obj = point(x,y,fxd)
             %The x and y coordinates of the point
             obj.x = x;
