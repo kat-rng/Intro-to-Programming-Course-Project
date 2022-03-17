@@ -1,5 +1,6 @@
 function addPoint(button, axes)
     % Toggles the ability to add points to the graph via mouse clicking.
+    disableAll(button);
     global currentState;
     global allPoints;
     xVal = get(axes, 'XLim');
@@ -13,12 +14,16 @@ function addPoint(button, axes)
             x = round(x);
             y = round(y);
             if (button.String == "Click to Disable") && (xVal(1) < x) && (xVal(2) > x) && (yVal(1) < y) && (yVal(2) > y)
-                plot(axes, x, y, '.b', "LineWidth", 8);
+                plot(axes, x, y, '.b', "LineWidth", 16);
                 allPoints = [allPoints, point(x, y, false)];
+            end
+            if button.String == "Add Points"
+                break;
             end
         end
     else
         button.String = "Add Points";
+        enableAll();
     end
 
 end

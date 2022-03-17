@@ -9,10 +9,11 @@ clc; clear; close all;
 % Establish Globals
 global currentState;
 global allPoints;
+global allButtons;
 
 % Basic Variable Setup
 currentState = 0;
-allPoints = {};
+allPoints = [];
 
 %% Screen Generation
 % Default Screen Info
@@ -31,13 +32,14 @@ buttonFontSize = appHeight * 0.019;
 % Generate Figure and Graph Window
 mainWindow = figure("Name", "Bridge Contructor", "Position", [xCorner, yCorner, appWidth, appHeight]);
 mainGrid = uiaxes("Parent", mainWindow ,"XLim", [-10, 210], "YLim", [-10, 110], "Position", [appWidth * 0.33, appHeight * 0.33, appWidth * 0.66, appHeight * 0.66], "XGrid", "on", "XMinorGrid", "on", "YGrid", "on", "YMinorGrid", "on");
+generalLabel = uicontrol("Parent", mainWindow, "Style", "text", "String", "Bridge Constructor", "Position", [0.01 * appWidth, 0.95 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", titleFontSize, "FontWeight", "bold");
+
 disableDefaultInteractivity(mainGrid);
 hold on;
-generalLabel = uicontrol("Parent", mainWindow, "Style", "text", "String", "Bridge Constructor", "Position", [0.01 * appWidth, 0.95 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", titleFontSize, "FontWeight", "bold");
 
 % Point Button Generations
 pointLabel = uicontrol(mainWindow, "Style", "text", "String", "Point Functions", "Position", [0.015 * appWidth, 0.9 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
-pointAddButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Add Points", "Position", [0.02 * appWidth, 0.85 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Callback", @(btn, event) addPoint(event.Source, mainGrid));
+pointAddButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Add Points", "Position", [0.02 * appWidth, 0.85 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize);
 pointRemoveButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Remove Points", "Position", [0.02 * appWidth, 0.8 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize);
 pointEditButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Edit Point", "Position", [0.02 * appWidth, 0.75 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize);
 
@@ -55,4 +57,8 @@ editButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Stop Simula
 % Results Display
 resultLabel = uicontrol(mainWindow, "Style", "text", "String", "Results:", "Position", [0.015 * appWidth, 0.3 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
 
+% All Button Array - For Disabling in Functions
+allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, simulateButton, editButton];
 
+% Establish Commands
+pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
