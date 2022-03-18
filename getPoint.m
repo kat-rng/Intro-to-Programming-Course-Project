@@ -1,16 +1,19 @@
-function deletePt = getPoint()
+function [pointReturn, ptIndex] = getPoint(axes)
     % Returns a point's values after clicking on the point itself.
     % Gets closest point to list of all points within range.
     global allPoints;
     [~, a] = size(allPoints);
+    dimAxesX = get(axes, 'XLim');
+    dimAxesY = get(axes, 'YLim');
+    maxDist = sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
 
     while true
         [x, y] = ginput(1);
         avaliablePts = [];
-    
+        
         for i = 1:a
             dist = sqrt((allPoints(i).x - x)^2 + (allPoints(i).y - y)^2);
-            if dist < 4
+            if dist < maxDist
                 avaliablePts = [avaliablePts; dist, i];
             end
         end
@@ -18,11 +21,13 @@ function deletePt = getPoint()
         if l == 0
             continue
         elseif l == 1
-            deletePt = allPoints(avaliablePts(1, 2));
+            pointReturn = allPoints(avaliablePts(1, 2));
+            ptIndex = avaliablePts(1, 2);
             break;
         else
             closestPt = min(avaliablePts);
-            deletePt = closestPt(2);
+            pointReturn = allPoints(closestPt(2));
+            ptIndex = closestPt(2);
             break;
         end
     end

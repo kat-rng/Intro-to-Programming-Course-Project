@@ -6,18 +6,27 @@
 clc; clear; close all;
 
 %% Variables
-% Establish Globals
+% Establish Globals - Used due to compatibility with variables in between
+% functions and lack of return capability.
 global currentState;
 global allPoints;
+global allLines;
 global allButtons;
 global allPlottedPoints;
 global allPlottedLines;
 
+global ptIDCount;
+global lnIdCount;
+
 % Basic Variable Setup
 currentState = 0;
 allPoints = [];
+allLines = [];
 allPlottedPoints = [];
 allPlottedLines = [];
+
+ptIDCount = 0;
+lnIdCount = 0;
 
 %% Screen Generation
 % Default Screen Info
@@ -66,4 +75,6 @@ allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton,
 
 % Establish Commands
 pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
-pointRemoveButton.Callback = @removePoint;
+pointRemoveButton.Callback = @(btn, event) removePoint(event.Source, mainGrid);
+lineAddButton.Callback = @(btn, event) addLine(event.Source, mainGrid);
+lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
