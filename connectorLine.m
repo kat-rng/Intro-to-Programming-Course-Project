@@ -9,11 +9,12 @@ classdef connectorLine
         angleNow;
         material;
         materialStrength;
+        lnID;
     end
 
     % Add Methods
     methods
-        function obj = connectorLine(point1, point2, mat, materialStr)
+        function obj = connectorLine(point1, point2, mat, materialStr, id)
             obj.point1 = point1;
             obj.point2 = point2;
             

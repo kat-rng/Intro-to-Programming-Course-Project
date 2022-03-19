@@ -4,18 +4,20 @@ classdef point
         x = 0;
         y = 0;
         fxd = false;
-        
+        ptID;
+
         %connected 
-        cLines = {}; 
+        cLines = []; 
     end
     
     % Add Methods
     methods
-        % Constructor
-        function obj = point(x,y,fxd)
+        % Constructors
+        function obj = point(x, y, fxd, id)
             %The x and y coordinates of the point
             obj.x = x;
             obj.y = y;
+            obj.ptID = id;
             
             %whether the object is fixed
             obj.fxd = fxd;
