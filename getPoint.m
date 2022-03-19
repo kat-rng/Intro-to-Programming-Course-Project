@@ -3,11 +3,18 @@ function [pointReturn, ptIndex] = getPoint(axes)
     % Gets closest point to list of all points within range.
     global allPoints;
     [~, a] = size(allPoints);
+
+    global currentState;
+
     dimAxesX = get(axes, 'XLim');
     dimAxesY = get(axes, 'YLim');
     maxDist = sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
 
     while true
+        state = mod(currentState, 2);
+        if state == 0
+            return;
+        end
         [x, y] = ginput(1);
         avaliablePts = [];
         
