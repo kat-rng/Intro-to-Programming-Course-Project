@@ -7,6 +7,8 @@ classdef connectorLine
         lengthNow;
         angleInit;
         angleNow;
+        slopeInit;
+        slopeNow;
         material;
         materialStrength;
         lnID;
@@ -17,12 +19,15 @@ classdef connectorLine
         function obj = connectorLine(point1, point2, mat, materialStr, id)
             obj.point1 = point1;
             obj.point2 = point2;
+            obj.lnID = id;
             
             % Setting up initial values
-            obj.lengthInit = findLength(point1, point2);
+            obj.lengthInit = obj.findLength(point1, point2);
             obj.lengthNow = obj.lengthInit;
-            obj.angleInit = findAngle(point1, point2);
+            obj.angleInit = obj.findAngle(point1, point2);
             obj.angleNow = obj.angleInit;
+            obj.slopeInit = obj.getSlope(point1, point2);
+            obj.slopeNow = obj.slopeInit;
             
             obj.material = mat;
             obj.materialStrength = materialStr;
@@ -47,6 +52,10 @@ classdef connectorLine
         function angle = findAngle(point1, point2)
             % Opposite over adjacent, finds angle above x axis
             angle = atan((point1.y - point2.y)/(point1.x - point2.x));
+        end
+        function slope = getSlope(point1, point2)
+            % Calculate the slope of the line - Used for removeLine.m
+            slope = (point1.y - point2.y)/(point1.x - point2.x);
         end
     end
 end
