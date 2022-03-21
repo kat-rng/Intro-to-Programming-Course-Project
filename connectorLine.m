@@ -82,7 +82,8 @@ classdef connectorLine
         
         function xy = forceToXY(force, angle)
             % obtains the components of the forces
-                xy = zeros(2,1);
+            xy = zeros(2,1);
+            % NOTE: xy should always be formatted as a 2,1 matrix
                 
             %using trigonometry to find the sum of the two components 
             %of the forces
