@@ -33,11 +33,6 @@ classdef point
             obj.mass = 0;
         end
         
-        function velocity = move()
-            % 1 is x, 2 is y
-            velocity(1) = 
-        end
-        
         function xy = sumF(self)
             % standard xy format
             xy = zeros(2,1);
@@ -63,7 +58,7 @@ classdef point
         function ptMass = sumMass(lines)
             ptMass = 0;
             for i = 1:length(lines)
-                ptMass + lines(i).mass;
+                ptMass= ptMass + lines(i).mass;
             end
         end
         
