@@ -59,18 +59,6 @@ classdef point
             
             % TODO add this to the velocity of the object
         end
-    end
-
-    % Static Methods
-    methods (Static)
-        function del = delete()
-            del = 0;
-            try
-                clear obj;
-            catch 
-                del = 1;
-            end
-        end
         
         function ptMass = sumMass(lines)
             ptMass = 0;
@@ -91,5 +79,4 @@ classdef point
             end
         end
     end
-    
 end
