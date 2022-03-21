@@ -38,8 +38,6 @@ classdef connectorLine
             obj.area = width * height;
         end
         
-        function force
-        
         % material requirement
         function force = axial(lengthI, lengthF, area, youngsMod)
             % Force = P = (deflection*area*young's modulus)/(length)
