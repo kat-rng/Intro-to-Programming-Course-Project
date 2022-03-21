@@ -6,8 +6,7 @@ classdef point
         fxdA = false;
         fxdPt = false;
         ptID;
-        vX = 0;
-        vY = 0;
+        v = zeros(2,1);
         mass = 0;
 
         %connected 
@@ -50,8 +49,15 @@ classdef point
         end
         
         function dv = changeVelocity(self, timestep)
-            dv(1) = 
-            dv(2) = 
+            % get the sum of forces
+            fxy = self.sumF(self);
+            
+            % a = f/m
+            % dv = time step * f/m
+            dv(1) = timestep * fxy(1) / self.mass;
+            dv(2) = timestep * fxy(2) / self.mass;
+            
+            % TODO add this to the velocity of the object
         end
     end
 
