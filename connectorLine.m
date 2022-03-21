@@ -33,6 +33,8 @@ classdef connectorLine
             obj.materialStrength = materialStr;
         end
         
+        function force
+        
         % material requirement
         function force = axial(lengthI, lengthF, area, youngsMod)
             % Force = P = (deflection*area*young's modulus)/(length)
@@ -55,23 +57,12 @@ classdef connectorLine
                 tForce = tForce*(-1);
             end
         end
-    end
-
-    % Static Methods
-    methods (Static)
-        function delLine = delete()
-            delLine = 0;
-            try
-                clear obj;
-            catch
-                delLine = 1;
-            end
-        end
         
         function dist = findLength(point1, point2)
             % Literally the pythagorean theorem
             dist = sqrt((point1.x - point2.x)^2 + (point1.y - point2.y)^2);
         end
+        
         function angle = findAngle(point1, point2)
             % This probably won't work as I don't *think* that it will give
             % angles past pi radians, will have to check
@@ -90,5 +81,11 @@ classdef connectorLine
             xy(1) = xy(1) + force*cos(angle);
             xy(2) = xy(2) + force*sin(angle);
         end
+    end
+
+    % Static Methods
+    methods (Static)
+        
+        
     end
 end
