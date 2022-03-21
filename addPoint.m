@@ -27,7 +27,7 @@ function addPoint(button, axes)
             end
             if (button.String == "Click to Disable") && (xVal(1) < x) && (xVal(2) > x) && (yVal(1) < y) && (yVal(2) > y) && (count == 0)
                 allPlottedPoints = [allPlottedPoints, plot(axes, x, y, '.b', "LineWidth", 20)];
-                allPoints = [allPoints, point(x, y, false, ptIDCount)];
+                allPoints = [allPoints, point(x, y, false, false, ptIDCount)];
                 ptIDCount = ptIDCount + 1;
             end
             if button.String == "Add Points"
