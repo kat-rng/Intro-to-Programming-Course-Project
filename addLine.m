@@ -20,6 +20,9 @@ function addLine(obj, axes)
     
         defaultMat = "Steel";
         defaultMatStr = 1;
+        defaultMatDensity = 1;
+        defaultWidth = 1;
+        defaultHeight = 1;
     
         [point1, ptaIndex] = getPoint(axes);
         
@@ -55,11 +58,15 @@ function addLine(obj, axes)
         end
 
         % Add Line
-        allLines = [allLines, connectorLine(point1, point2, defaultMat, defaultMatStr, lnIDCount)];
+        allLines = [allLines, connectorLine(point1, point2, defaultMat, defaultMatStr, defaultWidth, defaultHeight, lnIDCount)];
         lnIDCount = lnIDCount + 1;
         allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'red')];
         allPoints(ptaIndex).cLines = [allPoints(ptaIndex).cLines, allLines(end)];
         allPoints(ptbIndex).cLines = [allPoints(ptbIndex).cLines, allLines(end)];
+        
+        massBeam = allLines(end).area * allLines(end).length * defaultMatDensity;
+        allPoints(ptaIndex).mass = allPoints(ptaIndex).mass + 0.5 * massBeam;
+        allPoints(ptbIndex).mass = allPoints(ptbIndex).mass + 0.5 * massBeam;
         enableAll();
         obj.String = "Add Connecting Line";
         currentState = currentState + 1;

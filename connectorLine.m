@@ -12,13 +12,15 @@ classdef connectorLine
         lnID;
         
         mInertiaZ = 0;
-        area = 0; 
+        width = 0;
+        height = 0;
+        area = 0;
         youngsMod = 0;
     end
 
     % Add Methods
     methods
-        function obj = connectorLine(point1, point2, mat, materialStr, id)
+        function obj = connectorLine(point1, point2, mat, materialStr, width, height, id)
             obj.lnID = id;
             obj.point1 = point1;
             obj.point2 = point2;
@@ -31,6 +33,9 @@ classdef connectorLine
             
             obj.material = mat;
             obj.materialStrength = materialStr;
+            obj.height = height;
+            obj.width = width;
+            obj.area = width * height;
         end
         
         function force

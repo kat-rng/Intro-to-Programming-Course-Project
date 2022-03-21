@@ -31,7 +31,7 @@ classdef point
             obj.fxdA = fxdA;
             obj.fxdPt = fxdPt;
             
-            obj.mass = 
+            obj.mass = 0;
         end
         
         function velocity = move()
@@ -49,7 +49,7 @@ classdef point
             end
         end
         
-        function dv = changeVelocity()
+        function dv = changeVelocity(self, timestep)
             dv(1) = 
             dv(2) = 
         end
