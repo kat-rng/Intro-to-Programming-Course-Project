@@ -7,6 +7,7 @@ classdef connectorLine
         lengthNow;
         angleInit;
         angleNow;
+        slopeInit;
         material;
         materialStrength;
         lnID;
@@ -24,12 +25,14 @@ classdef connectorLine
             obj.lnID = id;
             obj.point1 = point1;
             obj.point2 = point2;
+            obj.lnID = id;
             
             % Calculating initial values of angles and length
-            obj.lengthInit = findLength(point1, point2);
+            obj.lengthInit = sqrt((point1.x - point2.x)^2 + (point1.y - point2.y)^2);
             obj.lengthNow = obj.lengthInit;
-            obj.angleInit = findAngle(point1, point2);
+            obj.angleInit = atan((point1.y - point2.y)/(point1.x - point2.x));
             obj.angleNow = obj.angleInit;
+            obj.slopeInit = (point1.y - point2.y) / (point1.x - point2.x);
             
             obj.material = mat;
             obj.materialStrength = materialStr;
@@ -84,11 +87,5 @@ classdef connectorLine
             xy(1) = xy(1) + force*cos(angle);
             xy(2) = xy(2) + force*sin(angle);
         end
-    end
-
-    % Static Methods
-    methods (Static)
-        
-        
     end
 end

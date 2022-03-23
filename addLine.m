@@ -64,7 +64,7 @@ function addLine(obj, axes)
         allPoints(ptaIndex).cLines = [allPoints(ptaIndex).cLines, allLines(end)];
         allPoints(ptbIndex).cLines = [allPoints(ptbIndex).cLines, allLines(end)];
         
-        massBeam = allLines(end).area * allLines(end).length * defaultMatDensity;
+        massBeam = allLines(end).area * allLines(end).lengthInit * defaultMatDensity;
         allPoints(ptaIndex).mass = allPoints(ptaIndex).mass + 0.5 * massBeam;
         allPoints(ptbIndex).mass = allPoints(ptbIndex).mass + 0.5 * massBeam;
         enableAll();

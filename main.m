@@ -14,6 +14,7 @@ global allLines;
 global allButtons;
 global allPlottedPoints;
 global allPlottedLines;
+global allMaterials;
 
 global ptIDCount;
 global lnIdCount;
@@ -24,9 +25,13 @@ allPoints = [];
 allLines = [];
 allPlottedPoints = [];
 allPlottedLines = [];
+allMaterials = [];
 
 ptIDCount = 0;
 lnIdCount = 0;
+
+%% Generate Materials
+
 
 %% Screen Generation
 % Default Screen Info
