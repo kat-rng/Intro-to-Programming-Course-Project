@@ -30,9 +30,16 @@ function removePoint(obj, axes)
         % Delete ConnectedLines
         toBeDeleted = [];
         for b = 1:l
-            if (allLines(b).point1.ptID == deletePt.ptID) || (allLines(b).point2.ptID == deletePt.ptID)
+            if (allLines(b).point1.ptID == deletePt.ptID) 
                 toBeDeleted = [b, toBeDeleted];
-            end    
+                index = getIndex(allLines(b).point2.ptID);
+                allPoints(index).mass = allPoints(index).mass - (allLines(b).mass * 0.5);
+            end
+            if (allLines(b).point2.ptID == deletePt.ptID)
+                toBeDeleted = [b, toBeDeleted];
+                index = getIndex(allLines(b).point1.ptID);
+                allPoints(index).mass = allPoints(index).mass - (allLines(b).mass * 0.5);
+            end
         end
         [~, del] = size(toBeDeleted);
         for j = 1:del

@@ -9,19 +9,19 @@ classdef connectorLine
         angleNow;
         slopeInit;
         material;
-        materialStrength;
+        mass;
         lnID;
         
         mInertiaZ = 0;
-        width = 0;
-        height = 0;
-        area = 0;
+        width;
+        height;
+        area;
         youngsMod = 0;
     end
 
     % Add Methods
     methods
-        function obj = connectorLine(point1, point2, mat, materialStr, width, height, id)
+        function obj = connectorLine(point1, point2, mat, width, height, id)
             obj.lnID = id;
             obj.point1 = point1;
             obj.point2 = point2;
@@ -35,10 +35,10 @@ classdef connectorLine
             obj.slopeInit = (point1.y - point2.y) / (point1.x - point2.x);
             
             obj.material = mat;
-            obj.materialStrength = materialStr;
             obj.height = height;
             obj.width = width;
             obj.area = width * height;
+            obj.mass = obj.area * obj.lengthInit * obj.material.density;
         end
         
         % material requirement

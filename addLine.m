@@ -5,6 +5,11 @@ function addLine(obj, axes)
     global allPlottedLines;
     [~, a] = size(allPoints);
 
+    global allMaterials;
+    defaultMat = allMaterials(1);
+    defaultWidth = 1;
+    defaultHeight = 1;
+
     global lnIDCount;
     global currentState;
     currentState = currentState + 1;
@@ -17,13 +22,7 @@ function addLine(obj, axes)
             return;
         end
         disableAll(obj);
-    
-        defaultMat = "Steel";
-        defaultMatStr = 1;
-        defaultMatDensity = 1;
-        defaultWidth = 1;
-        defaultHeight = 1;
-    
+            
         [point1, ptaIndex] = getPoint(axes);
         
         state = mod(currentState, 2);
@@ -58,15 +57,14 @@ function addLine(obj, axes)
         end
 
         % Add Line
-        allLines = [allLines, connectorLine(point1, point2, defaultMat, defaultMatStr, defaultWidth, defaultHeight, lnIDCount)];
+        allLines = [allLines, connectorLine(point1, point2, defaultMat, defaultWidth, defaultHeight, lnIDCount)];
         lnIDCount = lnIDCount + 1;
         allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'red')];
         allPoints(ptaIndex).cLines = [allPoints(ptaIndex).cLines, allLines(end)];
         allPoints(ptbIndex).cLines = [allPoints(ptbIndex).cLines, allLines(end)];
         
-        massBeam = allLines(end).area * allLines(end).lengthInit * defaultMatDensity;
-        allPoints(ptaIndex).mass = allPoints(ptaIndex).mass + 0.5 * massBeam;
-        allPoints(ptbIndex).mass = allPoints(ptbIndex).mass + 0.5 * massBeam;
+        allPoints(ptaIndex).mass = allPoints(ptaIndex).mass + 0.5 * allLines(end).mass;
+        allPoints(ptbIndex).mass = allPoints(ptbIndex).mass + 0.5 * allLines(end).mass;
         enableAll();
         obj.String = "Add Connecting Line";
         currentState = currentState + 1;
