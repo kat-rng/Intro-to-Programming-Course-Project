@@ -18,8 +18,10 @@ function removeLine(obj, axes)
         disableAll(obj);
         obj.String = "Click to Cancel";
         
-        lineID = getLine(axes);
-    
+        try
+            lineID = getLine(axes);
+        end
+        
         pt1Index = getIndex(allLines(lineID).point1.ptID);
         pt2Index = getIndex(allLines(lineID).point2.ptID);
 

@@ -18,6 +18,7 @@ global allMaterials;
 
 global ptIDCount;
 global lnIdCount;
+global editPresent;
 
 % Basic Variable Setup
 currentState = 0;
@@ -28,6 +29,7 @@ allPlottedLines = [];
 
 ptIDCount = 0;
 lnIdCount = 0;
+editPresent = 0;
 
 %% Generate Materials
 wood = bridgeMaterial("Wood", 1500, 1, 1, (10^6), 6.2, 1);
@@ -85,6 +87,8 @@ allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton,
 % Establish Commands
 pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
 pointRemoveButton.Callback = @(btn, event) removePoint(event.Source, mainGrid);
+pointEditButton.Callback = @(btn, event) editPoint(event.Source, mainGrid);
 lineAddButton.Callback = @(btn, event) addLine(event.Source, mainGrid);
 lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
+lineEditButton.Callback = @(btn, event) editLine(event.Source, mainGrid);
 clearButton.Callback = @resetProgram;

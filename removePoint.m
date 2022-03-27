@@ -22,7 +22,10 @@ function removePoint(obj, axes)
         obj.String = "Click to Cancel";
     
         % Get point and make sure its close
-        [deletePt, delIndex] = getPoint(axes);
+        try
+            [deletePt, delIndex] = getPoint(axes);
+        end
+        
         if obj.String == "Remove Point"
             return;
         end

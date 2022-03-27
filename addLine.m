@@ -16,14 +16,17 @@ function addLine(obj, axes)
     state = mod(currentState, 2);
 
     if state == 1
-        obj.String = "Click to Cancel";
         if a < 2
             currentState = currentState + 1;
             return;
         end
+
         disableAll(obj);
-            
-        [point1, ptaIndex] = getPoint(axes);
+        obj.String = "Click to Cancel";
+        
+        try
+            [point1, ptaIndex] = getPoint(axes);
+        end
         
         state = mod(currentState, 2);
         if state == 0
