@@ -87,3 +87,4 @@ pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
 pointRemoveButton.Callback = @(btn, event) removePoint(event.Source, mainGrid);
 lineAddButton.Callback = @(btn, event) addLine(event.Source, mainGrid);
 lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
+clearButton.Callback = @resetProgram;
