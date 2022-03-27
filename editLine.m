@@ -32,14 +32,14 @@ function editLine(button, axes)
         try
             lineID = getLine(axes);
         end
-        button.Enabled = off;
+        button.Enable = 'off';
 
         fig = popUpWindow("Edit Line");
         
         beamWidthLabel = uicontrol(fig, "Style", "text", "String", "Line Width: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        beamWidthValue = uicontrol(fig, "Style", "edit", "String", w, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        beamWidthValue = uicontrol(fig, "Style", "edit", "String", allLines(lineID).width, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         beamHeightLabel = uicontrol(fig, "Style", "text", "String", "Line Height: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        beamHeightValue = uicontrol(fig, "Style", "edit", "String", w, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        beamHeightValue = uicontrol(fig, "Style", "edit", "String", allLines(lineID).height, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
 
         beamMatLabel = uicontrol(fig, "Style", "text", "String", "Material: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         beamMatValue = uicontrol(fig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);

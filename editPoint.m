@@ -46,9 +46,13 @@ function editPoint(button, axes)
         yValueLabel = uicontrol(fig, "Style", "text", "String", "Y Value: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         yValueEdit = uicontrol(fig, "Style", "edit", "String", editPoint.y, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
 
+        ptFixedLabel = uicontrol(fig, "Style", "text", "String", "Fixed?: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        ptFixedValue = uicontrol(fig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        ptFixedValue.String = {"False", "True"};
+
         saveButton = uicontrol(fig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
         cancelButton = uicontrol(fig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
-        saveButton.Callback = @(btn, event) savePoint(editPtIndex, xValueEdit.Value, yValueEdit.Value);
+        saveButton.Callback = @(btn, event) savePoint(editPtIndex, xValueEdit.Value, yValueEdit.Value, ptFixedValue.Value);
         cancelButton.Callback = @(btn, event) close(fig);
         
         % Wait for figure to close
