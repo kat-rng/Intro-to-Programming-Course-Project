@@ -21,13 +21,16 @@ classdef connectorLine
 
     % Add Methods
     methods
-        function obj = connectorLine(point1, point2, mat, width, height, id)
+        function obj = connectorLine(point1ID, point2ID, mat, width, height, id)
+            global allPoints;
             obj.lnID = id;
-            obj.point1 = point1;
-            obj.point2 = point2;
+            obj.point1 = allPoints(getIndex(point1ID));
+            obj.point2 = allPoints(getIndex(point2ID));
             obj.lnID = id;
             
             % Calculating initial values of angles and length
+            point1 = obj.point1;
+            point2 = obj.point2;
             obj.lengthInit = sqrt((point1.x - point2.x)^2 + (point1.y - point2.y)^2);
             obj.lengthNow = obj.lengthInit;
             obj.angleInit = atan((point1.y - point2.y)/(point1.x - point2.x));

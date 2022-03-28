@@ -1,7 +1,8 @@
-function lineReturnID = getLine(axes)
+function lineReturnIndex = getLine(axes)
     % Returns the closest line to a defined mouse click given the click is
     % close enough to a line.
     
+    global currentState;
     global allLines;
     [~, l] = size(allLines);
 
@@ -9,7 +10,7 @@ function lineReturnID = getLine(axes)
     dimAxesY = get(axes, 'YLim');
     maxDist = sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
 
-    while true
+    while true && mod(currentState, 2) == 1
         % Get point clicked - used to determine closest line
         [x, y] = ginput(1);
         lineDistance = [];
@@ -36,7 +37,7 @@ function lineReturnID = getLine(axes)
 
             lineDistance = [lineDistance; dist, i];
         end
-        [closestDist, lineReturnID] = min(lineDistance(:, 1));
+        [closestDist, lineReturnIndex] = min(lineDistance(:, 1));
         if closestDist < maxDist
             break;
         end

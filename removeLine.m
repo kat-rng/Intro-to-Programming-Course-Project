@@ -19,18 +19,16 @@ function removeLine(obj, axes)
         obj.String = "Click to Cancel";
         
         try
-            lineID = getLine(axes);
+            lineIndex = getLine(axes);
         end
-        
-        pt1Index = getIndex(allLines(lineID).point1.ptID);
-        pt2Index = getIndex(allLines(lineID).point2.ptID);
 
-        allPoints(pt1Index).mass = allPoints(pt1Index).mass - (allLines(lineID).mass * 0.5);
-        allPoints(pt2Index).mass = allPoints(pt2Index).mass - (allLines(lineID).mass * 0.5);
+        if obj.String == "Remove Connecting Line"
+            return;
+        end
 
-        delete(allPlottedLines(lineID));
-        allPlottedLines(lineID) = [];
-        allLines(lineID) = [];
+        delete(allPlottedLines(lineIndex));
+        allPlottedLines(lineIndex) = [];
+        allLines(lineIndex) = [];
         currentState = currentState + 1;
         obj.String = "Remove Connecting Line";
         enableAll();

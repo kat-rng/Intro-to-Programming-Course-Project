@@ -17,7 +17,7 @@ global allPlottedLines;
 global allMaterials;
 
 global ptIDCount;
-global lnIdCount;
+global lnIDCount;
 global editPresent;
 
 % Basic Variable Setup
@@ -28,7 +28,7 @@ allPlottedPoints = [];
 allPlottedLines = [];
 
 ptIDCount = 0;
-lnIdCount = 0;
+lnIDCount = 0;
 editPresent = 0;
 
 %% Generate Materials

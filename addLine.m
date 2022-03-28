@@ -25,7 +25,7 @@ function addLine(obj, axes)
         obj.String = "Click to Cancel";
         
         try
-            [point1, ptaIndex] = getPoint(axes);
+            [point1, ~] = getPoint(axes);
         end
         
         state = mod(currentState, 2);
@@ -35,7 +35,7 @@ function addLine(obj, axes)
         
         colorPt(point1, "red");
         while true
-            [point2, ptbIndex] = getPoint(axes);
+            [point2, ~] = getPoint(axes);
             if (point2.ptID ~= point1.ptID)
                 break;
             end
@@ -60,14 +60,10 @@ function addLine(obj, axes)
         end
 
         % Add Line
-        allLines = [allLines, connectorLine(point1, point2, defaultMat, defaultWidth, defaultHeight, lnIDCount)];
+        allLines = [allLines, connectorLine(point1.ptID, point2.ptID, defaultMat, defaultWidth, defaultHeight, lnIDCount)];
         lnIDCount = lnIDCount + 1;
         allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'red')];
-        allPoints(ptaIndex).cLines = [allPoints(ptaIndex).cLines, allLines(end)];
-        allPoints(ptbIndex).cLines = [allPoints(ptbIndex).cLines, allLines(end)];
         
-        allPoints(ptaIndex).mass = allPoints(ptaIndex).mass + 0.5 * allLines(end).mass;
-        allPoints(ptbIndex).mass = allPoints(ptbIndex).mass + 0.5 * allLines(end).mass;
         enableAll();
         obj.String = "Add Connecting Line";
         currentState = currentState + 1;
