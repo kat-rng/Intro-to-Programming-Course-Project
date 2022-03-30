@@ -81,8 +81,11 @@ resultLabel = uicontrol(mainWindow, "Style", "text", "String", "Results:", "Posi
 % Clear Button
 clearButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Reset Program", "Position", [0.825 * appWidth, 0.15 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 
+% Help Button
+helpButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Help", "Position", [0.825 * appWidth, 0.05 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "#8BA7A9");
+
 % All Button Array - For Disabling in Functions
-allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, simulateButton, editButton, clearButton];
+allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, simulateButton, editButton, clearButton, helpButton];
 
 % Establish Commands
 pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
@@ -92,5 +95,6 @@ lineAddButton.Callback = @(btn, event) addLine(event.Source, mainGrid);
 lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
 lineEditButton.Callback = @(btn, event) editLine(event.Source, mainGrid);
 clearButton.Callback = @resetProgram;
+helpButton.Callback = @(btn, event) showHelp(event.Source);
 simulateButton.Callback = @(btn, event) simulateRun(event.Source, editButton, mainGrid);
 editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid);
