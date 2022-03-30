@@ -34,24 +34,25 @@ function editLine(button, axes)
         end
         button.Enable = 'off';
 
-        EditFig = popUpWindow("Edit Line");
+        editFig = popUpWindow("Edit Line");
         
-        beamWidthLabel = uicontrol(EditFig, "Style", "text", "String", "Line Width: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        beamWidthValue = uicontrol(EditFig, "Style", "edit", "String", allLines(lineIndex).width, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
-        beamHeightLabel = uicontrol(EditFig, "Style", "text", "String", "Line Height: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        beamHeightValue = uicontrol(EditFig, "Style", "edit", "String", allLines(lineIndex).height, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        beamWidthLabel = uicontrol(editFig, "Style", "text", "String", "Line Width: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        beamWidthValue = uicontrol(editFig, "Style", "edit", "String", allLines(lineIndex).width, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        beamHeightLabel = uicontrol(editFig, "Style", "text", "String", "Line Height: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        beamHeightValue = uicontrol(editFig, "Style", "edit", "String", allLines(lineIndex).height, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
 
-        beamMatLabel = uicontrol(EditFig, "Style", "text", "String", "Material: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        beamMatValue = uicontrol(EditFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        beamMatLabel = uicontrol(editFig, "Style", "text", "String", "Material: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        beamMatValue = uicontrol(editFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         beamMatValue.String = {allMaterials(1).name, allMaterials(2).name};
+        beamMatValue.Value = getMatIndex(allLines(lineIndex).material.name);
 
-        saveButton = uicontrol(EditFig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
-        cancelButton = uicontrol(EditFig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
-        saveButton.Callback = @(btn, event) saveLine(editFig, lineIndex, str2double(beamWidthValue.String), str2double(beamHeightValue.String), beamMatValue.String);
-        cancelButton.Callback = @(btn, event) close(EditFig);
+        saveButton = uicontrol(editFig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
+        cancelButton = uicontrol(editFig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
+        saveButton.Callback = @(btn, event) saveLine(editFig, lineIndex, str2double(beamWidthValue.String), str2double(beamHeightValue.String), beamMatValue.String(beamMatValue.Value));
+        cancelButton.Callback = @(btn, event) close(editFig);
         
         % Wait for figure to close
-        uiwait(EditFig);
+        uiwait(editFig);
 
         button.String = "Edit Connecting Line";
         enableAll();

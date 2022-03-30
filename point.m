@@ -1,10 +1,10 @@
 classdef point
     properties
         %position
-        x = 0;
-        y = 0;
-        fxdA = false;
-        fxdPt = false;
+        x;
+        y;
+        fxdA; 
+        fxdPt; 
         ptID;
         v = zeros(2,1);
         mass = 0;
@@ -27,6 +27,7 @@ classdef point
             obj.ptID = id;
             
             %whether the object is fixed
+            % 0 = false, 1 = true
             obj.fxdA = fxdA;
             obj.fxdPt = fxdPt;
             
