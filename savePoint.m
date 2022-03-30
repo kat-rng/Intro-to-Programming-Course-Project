@@ -1,4 +1,4 @@
-function savePoint(changedPtIndex, newX, newY, newFixedPos, newFixedRot, axes)
+function savePoint(fig, changedPtIndex, newX, newY, newFixedPos, newFixedRot, axes)
     % Applies changes to the point that was made, in turn changing and
     % redrawing both the point and all connected lines.
 
@@ -24,4 +24,5 @@ function savePoint(changedPtIndex, newX, newY, newFixedPos, newFixedRot, axes)
             allPlottedLines(i) = line([allLines(i).point1.x, newX],[allLines(i).point1.y, newY], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height));
         end
     end
+    close(fig);
 end

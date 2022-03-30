@@ -1,4 +1,4 @@
-function saveLine(lineIndex, newWidth, newHeight, newMat)
+function saveLine(fig, lineIndex, newWidth, newHeight, newMat)
     % Applies chances to the selected line and recalculated needed values.
 
     global allLines;
@@ -10,4 +10,5 @@ function saveLine(lineIndex, newWidth, newHeight, newMat)
     delete(allPlottedLines(lineIndex));
     allPlottedLines(lineIndex) = line([allLines(lineIndex).point1.x, allLines(lineIndex).point2.x],[allLines(lineIndex).point1.y, allLines(lineIndex).point2.y], 'Color', 'blue', 'LineWidth', (0.1 * newHeight));
 
+    close(fig);
 end

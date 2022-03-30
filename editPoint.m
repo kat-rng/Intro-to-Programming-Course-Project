@@ -39,28 +39,28 @@ function editPoint(button, axes)
         end
         button.Enable = 'off';
 
-        fig = popUpWindow("Edit Point");
+        editFig = popUpWindow("Edit Point");
     
-        xValueLabel = uicontrol(fig, "Style", "text", "String", "X Value: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        xValueEdit = uicontrol(fig, "Style", "edit", "String", editPoint.x, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
-        yValueLabel = uicontrol(fig, "Style", "text", "String", "Y Value: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        yValueEdit = uicontrol(fig, "Style", "edit", "String", editPoint.y, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        xValueLabel = uicontrol(editFig, "Style", "text", "String", "X Value: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        xValueEdit = uicontrol(editFig, "Style", "edit", "String", editPoint.x, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        yValueLabel = uicontrol(editFig, "Style", "text", "String", "Y Value: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        yValueEdit = uicontrol(editFig, "Style", "edit", "String", editPoint.y, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
 
-        ptMotionFixedLabel = uicontrol(fig, "Style", "text", "String", "Fixed Position?: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        ptMotionFixedValue = uicontrol(fig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        ptMotionFixedLabel = uicontrol(editFig, "Style", "text", "String", "Fixed Position?: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        ptMotionFixedValue = uicontrol(editFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         ptMotionFixedValue.String = {"False", "True"};
 
-        ptRotFixedLabel = uicontrol(fig, "Style", "text", "String", "Fixed Rotation?: ", "Position", [0.2 * appWidth, 0.5 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
-        ptRotFixedValue = uicontrol(fig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.5 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
+        ptRotFixedLabel = uicontrol(editFig, "Style", "text", "String", "Fixed Rotation?: ", "Position", [0.2 * appWidth, 0.5 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        ptRotFixedValue = uicontrol(editFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.5 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         ptRotFixedValue.String = {"False", "True"};
 
-        saveButton = uicontrol(fig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
-        cancelButton = uicontrol(fig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
-        saveButton.Callback = @(btn, event) savePoint(editPtIndex, xValueEdit.Value, yValueEdit.Value, ptMotionFixedValue.Value, ptRotFixedValue.Value, axes);
-        cancelButton.Callback = @(btn, event) close(fig);
+        saveButton = uicontrol(editFig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
+        cancelButton = uicontrol(editFig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
+        saveButton.Callback = @(btn, event) savePoint(editFig, editPtIndex, str2double(xValueEdit.String), str2double(yValueEdit.String), ptMotionFixedValue.String, ptRotFixedValue.String, axes);
+        cancelButton.Callback = @(btn, event) close(editFig);
         
         % Wait for figure to close
-        uiwait(fig);
+        uiwait(editFig);
 
         button.String = "Edit Point";
         enableAll();
