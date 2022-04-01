@@ -39,3 +39,19 @@ function dVector = axialDirVect(ptIndexes)
     dVector(1) = dVector(1) / magnitude;
     dVector(2) = dVector(2) / magnitude;
 end
+function dxdy = distXY(points, ptIndexes)
+    %finds the xy vector to get to point 2's position from point 1
+    dxdy = zeros(1,2);
+    
+    % The formatting here is relevant as the vector must point from 1 to
+    % 2 so tension (positive force) forces point1 towards equilibrium
+    dxdy(1) = points(ptIndexes(2),4)-points(ptIndexes(1),4);
+    dxdy(2) = points(ptIndexes(2),5)-points(ptIndexes(1),5);
+end
+function clength = currentLength(ptIndexes)
+    %finds the current magnitude of the distance between 2 points using
+    %their indexes
+    %basic magnitude code
+    distances = distXY(points, ptIndexes);
+    clength = (distances(1)^2 + distances(2)^2)^0.5;
+end
