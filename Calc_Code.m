@@ -60,6 +60,13 @@ function ptIndexes = findPtIndexes(iL)
     ptIDs = lines(iL,3:4);
     ptIndexes= [find(points(:,1)==ptIDs(1)), find(points(:,1)==ptIDs(2))];
 end
+function ptIndexes = applyForces(iL)
+    %Calls all the functions to apply forces to points
+    ptIndexes = findPtIndexes(iL);
+    
+    %Call axial function to apply forces to points
+    applyAxial(iL, ptIndexes)
+end
 function force = applyAxial(iL, ptIndexes)
     %applies an axial force to the connected points according to the
     %formula D=PL/(AE), rearranged to P = D(AE)/L
