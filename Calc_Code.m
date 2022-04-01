@@ -1,4 +1,6 @@
-points = zeros(1,10);
+points = zeros(2,10);
+%TODO: add a pointer for what PtID to assign to any given new point
+points(1,:po) = 1:10;
 % 1     2       3       4  5  6   7   8   9   10
 % PtID, FixedA, FixedP, x, y, vx, vy, xf, yf, mass
 
