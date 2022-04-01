@@ -55,3 +55,15 @@ function clength = currentLength(ptIndexes)
     distances = distXY(points, ptIndexes);
     clength = (distances(1)^2 + distances(2)^2)^0.5;
 end
+function ptIndexes = findPtIndexes(iL)
+    %finds the indexes of the points a line is connected to
+    ptIDs = lines(iL,3:4);
+    ptIndexes= [find(points(:,1)==ptIDs(1)), find(points(:,1)==ptIDs(2))];
+end
+function points = applyForce(force, unitVector, pointID)
+    %Applies forces to a point based on a force and a unit vector
+    
+    %unit vector determines relative magnitudes of the forces
+    points(pointID,8) = points(pointID,8) + force*unitVector(1);
+    points(pointID,9) = points(pointID,9) + force*unitVector(2);
+end
