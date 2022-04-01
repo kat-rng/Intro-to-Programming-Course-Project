@@ -28,15 +28,11 @@ function points = accelPoints(timeStep)
         points(i,7) = points(i,7) + points(i,9)*timeStep/points(i,10);
     end
 end
-function dVector = axialFDirVect(points, p1i, p2i)
-    % Produces a force wo
-    
-    dVector = zeros(1,2);
-    
-    % Vector points from point 1 to point 2, as this would result in
-    % tension (positive force) forcing the point towards equilibrium
-    dVector(1) = points(p2i,4)-points(p1i,4);
-    dVector(2) = points(p2i,5)-points(p1i,5);
+function dVector = axialDirVect(ptIndexes)
+    %Finds the unit vector that points from point 1 to point 2
+
+    %Finds the distance between 2 points
+    dVector = distXY(points, ptIndexes(1), ptIndexes(2));
     
     % Divide by magnitude to turn it into a unit vector
     magnitude = (dVector(1)^2 + dVector(2)^2)^0.5;
