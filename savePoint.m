@@ -17,13 +17,23 @@ function savePoint(fig, changedPtIndex, newX, newY, newFixedPos, newFixedRot, ax
     for i = 1:a
         if getIndex(allLines(i).point1.ptID) == changedPtIndex
             delete(allPlottedLines(i));
-            allLines(i) = connectorLine(allPoints(changedPtIndex).ptID, allLines(i).point2.ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
-            allPlottedLines(i) = line([newX, allLines(i).point2.x],[newY, allLines(i).point2.y], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height));
+            if allLines(i).point1.x <= allPoints(changedPtIndex).x
+                allLines(i) = connectorLine(allPoints(changedPtIndex).ptID, allLines(i).point2.ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
+                allPlottedLines(i) = line([newX, allLines(i).point2.x],[newY, allLines(i).point2.y], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height));
+            else
+                allLines(i) = connectorLine(allLines(i).point1.ptID, allPoints(changedPtIndex).ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
+                allPlottedLines(i) = line([allLines(i).point1.x, newX],[allLines(i).point1.y, newY], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height));
+            end
         end
         if getIndex(allLines(i).point2.ptID) == changedPtIndex
             delete(allPlottedLines(i));
-            allLines(i) = connectorLine(allLines(i).point1.ptID, allPoints(changedPtIndex).ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
-            allPlottedLines(i) = line([allLines(i).point1.x, newX],[allLines(i).point1.y, newY], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height));
+            if allLines(i).point2.x <= allPoints(changedPtIndex).x
+                allLines(i) = connectorLine(allPoints(changedPtIndex).ptID, allLines(i).point1.ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
+                allPlottedLines(i) = line([newX, allLines(i).point1.x],[newY, allLines(i).point1.y], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height));
+            else
+                allLines(i) = connectorLine(allLines(i).point1.ptID, allPoints(changedPtIndex).ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
+                allPlottedLines(i) = line([allLines(i).point1.x, newX],[allLines(i).point1.y, newY], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height));
+            end
         end
     end
 end
