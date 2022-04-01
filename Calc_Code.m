@@ -12,13 +12,17 @@ lines = zeros(1,10);
 
 forces = zeros(1,0);
 
-function points = movePoints(points, timeStep)
+function points = movePoints(timeStep)
+    %moves points based off of applying the velocity over a small time
+    %step
     for i = 1:length(points(:,1))
         points(i,4) = points(i,4) + points(i,6)*timeStep;
         points(i,5) = points(i,5) + points(i,7)*timeStep;
     end
 end
-function points = accelPoints(points, timeStep)
+function points = accelPoints(timeStep)
+    %changes points velocities via applying newton's second law (a=f/m)
+    %over a small time step
     for i = 1:length(points(:,1))
         points(i,6) = points(i,6) + points(i,8)*timeStep/points(i,10);
         points(i,7) = points(i,7) + points(i,9)*timeStep/points(i,10);
