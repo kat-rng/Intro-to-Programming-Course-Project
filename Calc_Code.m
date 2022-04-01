@@ -60,6 +60,26 @@ function ptIndexes = findPtIndexes(iL)
     ptIDs = lines(iL,3:4);
     ptIndexes= [find(points(:,1)==ptIDs(1)), find(points(:,1)==ptIDs(2))];
 end
+function force = applyAxial(iL, ptIndexes)
+    %applies an axial force to the connected points according to the
+    %formula D=PL/(AE), rearranged to P = D(AE)/L
+    
+    %The original length is subtracted such that an increase in length is
+    %reflected with a positive value for deflection
+    deflection =  currentLength(ptIndexes) - lines(iL,8);
+    
+    %Calculate forces using the previously mentioned equations
+    %Names of forces:   Area       Young'sMod   originalLength
+    force = deflection*lines(iL,7)*lines(iL,9)/lines(iL,8);
+    
+    %Find the unit vector for the points
+    unitVector = axialDirVect(ptIndexes);
+    
+    %Apply those forces using that unit vector (the second point gets a
+    %negative value since it's at the opposite end of the beam)
+    applyForce(force, unitVector, ptIndexes(1));
+    applyForce(force*(-1), unitVector, ptIndexes(2));
+end
 function points = applyForce(force, unitVector, pointID)
     %Applies forces to a point based on a force and a unit vector
     
