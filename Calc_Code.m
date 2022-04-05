@@ -78,6 +78,12 @@ function a = jeb()
     %use the velocities to determine the change in position
     movePoints(timeStep);
 end
+function applyAllForces()
+    %just iterates applyForces
+    for i=1:length(lines(:,1))
+        applyForces(i);
+    end
+end
 function points = movePoints(timeStep)
     %moves points based off of applying the velocity over a small time
     %step
