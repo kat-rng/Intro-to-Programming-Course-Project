@@ -59,6 +59,25 @@ function calcMass()
         points(p(2),10) = points(p(2),10) + m/2;
     end
 end
+function a = jeb()
+    % Jeb is very good at figuring out how to simulate bridges so we hired
+    % him. Be sure to thank him because we haven't paid him in months.
+    
+    %May be changeable later but for now it will be hard coded
+    timeStep = 0.01
+    
+    %Set all the forces to 0
+    points(:,8:9)=0;
+    
+    %apply the current forces
+    applyAllForces();
+    
+    %use the forces to determine the change in velocity
+    accelPoints(timeStep);
+    
+    %use the velocities to determine the change in position
+    movePoints(timeStep);
+end
 function points = movePoints(timeStep)
     %moves points based off of applying the velocity over a small time
     %step
