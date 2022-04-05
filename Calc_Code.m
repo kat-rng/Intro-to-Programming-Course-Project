@@ -88,8 +88,10 @@ function points = movePoints(timeStep)
     %moves points based off of applying the velocity over a small time
     %step
     for i = 1:length(points(:,1))
-        points(i,4) = points(i,4) + points(i,6)*timeStep;
-        points(i,5) = points(i,5) + points(i,7)*timeStep;
+        if(points(1) == 0)
+            points(i,4) = points(i,4) + points(i,6)*timeStep;
+            points(i,5) = points(i,5) + points(i,7)*timeStep;
+        end
     end
 end
 function points = accelPoints(timeStep)
