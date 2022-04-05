@@ -45,6 +45,20 @@ function p = testData()
     lines(5) = 415;
     calcMass();
 end
+function calcMass()
+    for i = 1:length(lines)
+        %calculate the mass by multiplying the density by the volume of the
+        %beam
+        m = lines(i,5)*lines(i,7)*lines(i,8);
+        
+        %get the indecies
+        p = findPtIndexes(i);
+        
+        %add half the mass of each beam to the ends
+        points(p(1),10) = points(p(1),10) + m/2;
+        points(p(2),10) = points(p(2),10) + m/2;
+    end
+end
 function points = movePoints(timeStep)
     %moves points based off of applying the velocity over a small time
     %step
