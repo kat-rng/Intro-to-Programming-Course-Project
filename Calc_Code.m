@@ -1,9 +1,15 @@
+global isStarting;
 global points;
+global lines;
+global lineEndPts;
+
+if(isStarting==1)
 points = zeros(7,10);
 %TODO: add a pointer for what PtID to assign to any given new point
+% points(i,4) = x position of index i
 % 1     2       3       4  5  6   7   8   9   10
 % PtID, FixedA, FixedP, x, y, vx, vy, xf, yf, mass
-global lines;
+
 lines = zeros(11,10);
 % 1     2         3    4    5        6          7     8           9           10
 % LnID, material, Pt1, Pt2, density, initAngle, Area, initLength, Young'sMod, Shear Modulus
@@ -11,6 +17,10 @@ lines = zeros(11,10);
 
 forces = zeros(1,0);
 testData();
+
+else
+    jeb();
+end
 
 function p = testData()
     p= 1;
