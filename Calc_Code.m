@@ -44,6 +44,7 @@ function p = testData()
     points(:,3)
     
     lines(:,1) = 1:11;
+    %point IDs
     lines(:,3) = [1,2,3,5,6,1,5,2,6,3,7];
     lines(:,4) = [2,3,4,6,7,5,2,6,3,7,4];
     lines(:,2) = 1;
@@ -74,7 +75,7 @@ function a = jeb()
     % him. Be sure to thank him because we haven't paid him in months.
     
     %May be changeable later but for now it will be hard coded
-    timeStep = 0.01
+    timeStep = 0.01;
     
     %Set all the forces to 0
     points(:,8:9)=0;
