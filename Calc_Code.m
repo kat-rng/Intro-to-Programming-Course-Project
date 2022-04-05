@@ -1,16 +1,16 @@
 global points;
-points = zeros(2,10);
+points = zeros(7,10);
 %TODO: add a pointer for what PtID to assign to any given new point
-points(1,:) = 1:10;
 % 1     2       3       4  5  6   7   8   9   10
 % PtID, FixedA, FixedP, x, y, vx, vy, xf, yf, mass
 global lines;
-lines = zeros(1,10);
-% 1     2         3    4    5     6          7     8           9           10
-% LnID, material, Pt1, Pt2, mass, initAngle, Area, initLength, Young'sMod, Shear Modulus
+lines = zeros(11,10);
+% 1     2         3    4    5        6          7     8           9           10
+% LnID, material, Pt1, Pt2, density, initAngle, Area, initLength, Young'sMod, Shear Modulus
 % current length and angle will have to be calculated anyway
 
 forces = zeros(1,0);
+testData();
 
 function points = movePoints(timeStep)
     %moves points based off of applying the velocity over a small time
