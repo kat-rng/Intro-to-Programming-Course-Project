@@ -44,6 +44,8 @@ function p = testData()
         points(i,5) = 2.598076211;
     end
     points(:,1) = 1:7;
+    points(1,2) = 1;
+    points(4,2) = 1;
     
     lines(:,1) = 1:11;
     %point IDs
