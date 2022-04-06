@@ -33,6 +33,9 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
 
         % Plot Lines
         for j = 1:l
+            try
+                delete(resultPlottedLines(j));
+            end
             pt1 = zeros(1,2);
             pt2 = zeros(1,2);
             for n = 1:p
