@@ -62,7 +62,7 @@ function addLine(obj, axes)
         % Add Line
         allLines = [allLines, connectorLine(point1.ptID, point2.ptID, defaultMat, defaultWidth, defaultHeight, lnIDCount)];
         lnIDCount = lnIDCount + 1;
-        allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'blue', 'LineWidth', 0.1)];
+        allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'blue', 'LineWidth', 0.1, "Parent", axes)];
         
         enableAll();
         obj.String = "Add Connecting Line";

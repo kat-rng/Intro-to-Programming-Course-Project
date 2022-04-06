@@ -52,7 +52,8 @@ buttonFontSize = appHeight * 0.019;
 
 % Generate Figure and Graph Window
 mainWindow = figure("Name", "Bridge Contructor", "Position", [xCorner, yCorner, appWidth, appHeight]);
-mainGrid = uiaxes("Parent", mainWindow ,"XLim", [-10, 210], "YLim", [-10, 110], "Position", [appWidth * 0.33, appHeight * 0.33, appWidth * 0.66, appHeight * 0.66], "XGrid", "on", "XMinorGrid", "on", "YGrid", "on", "YMinorGrid", "on");
+resultGrid = uiaxes("Parent", mainWindow, "XLim", [-1, 21], "YLim", [-1, 11], "Position", [appWidth * 0.33, appHeight * 0.33, appWidth * 0.66, appHeight * 0.66], "XGrid", "on", "XMinorGrid", "on", "YGrid", "on", "YMinorGrid", "on", "Visible", "off");
+mainGrid = uiaxes("Parent", mainWindow ,"XLim", [-1, 21], "YLim", [-1, 11], "Position", [appWidth * 0.33, appHeight * 0.33, appWidth * 0.66, appHeight * 0.66], "XGrid", "on", "XMinorGrid", "on", "YGrid", "on", "YMinorGrid", "on");
 % Should be .015, is currently 0.01
 generalLabel = uicontrol("Parent", mainWindow, "Style", "text", "String", "Bridge Constructor", "Position", [0.01 * appWidth, 0.95 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", titleFontSize, "FontWeight", "bold");
 
@@ -97,5 +98,5 @@ lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
 lineEditButton.Callback = @(btn, event) editLine(event.Source, mainGrid);
 clearButton.Callback = @resetProgram;
 helpButton.Callback = @(btn, event) showHelp(event.Source);
-simulateButton.Callback = @(btn, event) simulateRun(event.Source, editButton, mainGrid);
-editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid);
+simulateButton.Callback = @(btn, event) simulateRun(event.Source, editButton, mainGrid, resultGrid);
+editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid);
