@@ -101,10 +101,11 @@ function applyAllForces()
         applyForces(i);
     end
 end
-function points = movePoints(timeStep)
+function p = movePoints(timeStep)
     %moves points based off of applying the velocity over a small time
     %step
     global points;
+    p = 0;
     for i = 1:length(points(:,1))
         if(points(1) == 0)
             points(i,4) = points(i,4) + points(i,6)*timeStep;
@@ -112,10 +113,11 @@ function points = movePoints(timeStep)
         end
     end
 end
-function points = accelPoints(timeStep)
+function p = accelPoints(timeStep)
     %changes points velocities via applying newton's second law (a=f/m)
     %over a small time step
     global points;
+    p=0;
     for i = 1:length(points(:,1))
         points(i,6) = points(i,6) + points(i,8)*timeStep/points(i,10);
         points(i,7) = points(i,7) + points(i,9)*timeStep/points(i,10)-9.81;
@@ -123,7 +125,6 @@ function points = accelPoints(timeStep)
 end
 function dVector = axialDirVect(ptIndexes)
     %Finds the unit vector that points from point 1 to point 2
-    global points;
 
     %Finds the distance between 2 points
     dVector = distXY(ptIndexes);
@@ -147,7 +148,6 @@ function clength = currentLength(ptIndexes)
     %finds the current magnitude of the distance between 2 points using
     %their indexes
     %basic magnitude code
-    global points;
     distances = distXY(ptIndexes);
     clength = (distances(1)^2 + distances(2)^2)^0.5;
 end
@@ -186,9 +186,10 @@ function force = applyAxial(iL, ptIndexes)
     applyForce(force, unitVector, ptIndexes(1));
     applyForce(force*(-1), unitVector, ptIndexes(2));
 end
-function points = applyForce(force, unitVector, pointID)
+function p = applyForce(force, unitVector, pointID)
     %Applies forces to a point based on a force and a unit vector
     global points;
+    p=0;
     
     %unit vector determines relative magnitudes of the forces
     points(pointID,8) = points(pointID,8) + force*unitVector(1);
