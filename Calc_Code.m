@@ -77,7 +77,8 @@ function a = jeb()
     % Jeb is very good at figuring out how to simulate bridges so we hired
     % him. Be sure to thank him because we haven't paid him in months.
     global points;
-
+    a=0;
+    
     %May be changeable later but for now it will be hard coded
     timeStep = 0.01;
     
@@ -125,18 +126,17 @@ function dVector = axialDirVect(ptIndexes)
     global points;
 
     %Finds the distance between 2 points
-    dVector = distXY(points, ptIndexes(1), ptIndexes(2));
+    dVector = distXY(ptIndexes);
     
     % Divide by magnitude to turn it into a unit vector
     magnitude = (dVector(1)^2 + dVector(2)^2)^0.5;
     dVector(1) = dVector(1) / magnitude;
     dVector(2) = dVector(2) / magnitude;
 end
-function dxdy = distXY(points, ptIndexes)
+function dxdy = distXY(ptIndexes)
     %finds the xy vector to get to point 2's position from point 1
-    dxdy = zeros(1,2);
-
     global points;
+    dxdy = zeros(1,2);
     
     % The formatting here is relevant as the vector must point from 1 to
     % 2 so tension (positive force) forces point1 towards equilibrium
@@ -148,7 +148,7 @@ function clength = currentLength(ptIndexes)
     %their indexes
     %basic magnitude code
     global points;
-    distances = distXY(points, ptIndexes);
+    distances = distXY(ptIndexes);
     clength = (distances(1)^2 + distances(2)^2)^0.5;
 end
 function ptIndexes = findPtIndexes(iL)
@@ -163,7 +163,7 @@ function ptIndexes = applyForces(iL)
     ptIndexes = findPtIndexes(iL);
     
     %Call axial function to apply forces to points
-    applyAxial(iL, ptIndexes)
+    applyAxial(iL, ptIndexes);
 end
 function force = applyAxial(iL, ptIndexes)
     %applies an axial force to the connected points according to the
