@@ -1,7 +1,6 @@
 global isStarting;
 global points;
 global lines;
-testData()
 if(isStarting==1)
 points = zeros(7,10);
 %TODO: add a pointer for what PtID to assign to any given new point
@@ -99,7 +98,7 @@ function a = jeb()
 end
 function applyAllForces()
     %just iterates applyForces
-    global lines
+    global lines;
     for i=1:length(lines(:,1))
         applyForces(i);
     end
