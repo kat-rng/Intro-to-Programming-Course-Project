@@ -112,7 +112,7 @@ function p = movePoints(timeStep)
     global points;
     p = 0;
     for i = 1:length(points(:,1))
-        if(points(1) == 0)
+        if(points(i,2) == 0)
             points(i,4) = points(i,4) + points(i,6)*timeStep;
             points(i,5) = points(i,5) + points(i,7)*timeStep;
         end
