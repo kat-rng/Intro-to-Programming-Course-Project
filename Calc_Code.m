@@ -30,18 +30,18 @@ function p = testData()
     %lower points
     for i = 1:4
         %setting x
-        points(i,3) = (i-1)*3;
+        points(i,4) = (i-1)*3;
         
         %setting y
-        points(i,4) = 0;
+        points(i,5) = 0;
     end
     %upper points
     for i = 5:7
         %setting x
-        points(i,3) = (i-5)*3+1.5;
+        points(i,4) = (i-5)*3+1.5;
         
         %setting y
-        points(i,4) = 2.598076211;
+        points(i,5) = 2.598076211;
     end
     points(:,1) = 1:7;
     
@@ -122,7 +122,7 @@ function p = accelPoints(timeStep)
     p=0;
     for i = 1:length(points(:,1))
         points(i,6) = points(i,6) + points(i,8)*timeStep/points(i,10);
-        points(i,7) = points(i,7) + points(i,9)*timeStep/points(i,10)-9.81;
+        points(i,7) = points(i,7) + points(i,9)*timeStep/points(i,10)-9.81*timeStep;
     end
 end
 function dVector = axialDirVect(ptIndexes)
