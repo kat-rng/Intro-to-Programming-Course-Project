@@ -4,8 +4,8 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
 
     global points;
     global lines;
-    [~, p] = size(points);
-    [~, l] = size(lines);
+    [p, ~] = size(points);
+    [l, ~] = size(lines);
 
     resultPlottedPoints = [];
     resultPlottedLines = [];
@@ -38,7 +38,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
                     pt2 = [points(n, 4), points(n, 5)];
                 end
             end
-            resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", "red", "LineWidth", 0.1 * lines(j, 7), "Parent", resultAxes);
+            resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", "red", "LineWidth", 1, "Parent", resultAxes);
         end
 
         % Check if simulation should continue
