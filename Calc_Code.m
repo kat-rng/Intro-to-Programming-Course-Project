@@ -1,7 +1,7 @@
 global isStarting;
 global points;
 global lines;
-
+testData()
 if(isStarting==1)
 points = zeros(7,10);
 %TODO: add a pointer for what PtID to assign to any given new point
@@ -24,11 +24,14 @@ end
 function p = testData()
     global points;
     global lines;
+    
+    points = zeros(7,10);
+    lines = zeros(11,10);
     p= 1;
     %lower points
     for i = 1:4
         %setting x
-        points(i,4) = (i-1)*3;
+        points(i,3) = (i-1)*3;
         
         %setting y
         points(i,4) = 0;
@@ -42,19 +45,19 @@ function p = testData()
         points(i,4) = 2.598076211;
     end
     points(:,1) = 1:7;
-    points(:,3)
     
     lines(:,1) = 1:11;
     %point IDs
     lines(:,3) = [1,2,3,5,6,1,5,2,6,3,7];
     lines(:,4) = [2,3,4,6,7,5,2,6,3,7,4];
     lines(:,2) = 1;
+    lines(:,8) = 1;
     % area of a 2x4 in meters^2
-    lines(7) = 0.00516128;
+    lines(:,7) = 0.00516128;
     %young's modulus of bass wood
-    lines(9) = 10100*10^6;
+    lines(:,9) = 10100*10^6;
     %density of bass wood
-    lines(5) = 415;
+    lines(:,5) = 415;
     calcMass();
 end
 function calcMass()
