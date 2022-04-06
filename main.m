@@ -98,5 +98,5 @@ lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
 lineEditButton.Callback = @(btn, event) editLine(event.Source, mainGrid);
 clearButton.Callback = @resetProgram;
 helpButton.Callback = @(btn, event) showHelp(event.Source);
-simulateButton.Callback = @(btn, event) simulateRun(event.Source, editButton, mainGrid, resultGrid);
+simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, mainGrid, resultGrid);
 editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid);

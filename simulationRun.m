@@ -1,7 +1,5 @@
 function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
     % Runs the simulation of the model.
-    global allPoints;
-    global allLines;
     global isStarting;
 
     global points;

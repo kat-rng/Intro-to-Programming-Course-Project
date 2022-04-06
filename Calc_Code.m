@@ -1,7 +1,6 @@
 global isStarting;
 global points;
 global lines;
-global lineEndPts;
 
 if(isStarting==1)
 points = zeros(7,10);
@@ -23,6 +22,8 @@ else
 end
 
 function p = testData()
+    global points;
+    global lines;
     p= 1;
     %lower points
     for i = 1:4
@@ -57,6 +58,8 @@ function p = testData()
     calcMass();
 end
 function calcMass()
+    global points;
+    global lines;
     for i = 1:length(lines)
         %calculate the mass by multiplying the density by the volume of the
         %beam
@@ -73,7 +76,8 @@ end
 function a = jeb()
     % Jeb is very good at figuring out how to simulate bridges so we hired
     % him. Be sure to thank him because we haven't paid him in months.
-    
+    global points;
+
     %May be changeable later but for now it will be hard coded
     timeStep = 0.01;
     
@@ -91,6 +95,7 @@ function a = jeb()
 end
 function applyAllForces()
     %just iterates applyForces
+    global lines
     for i=1:length(lines(:,1))
         applyForces(i);
     end
@@ -98,6 +103,7 @@ end
 function points = movePoints(timeStep)
     %moves points based off of applying the velocity over a small time
     %step
+    global points;
     for i = 1:length(points(:,1))
         if(points(1) == 0)
             points(i,4) = points(i,4) + points(i,6)*timeStep;
@@ -108,6 +114,7 @@ end
 function points = accelPoints(timeStep)
     %changes points velocities via applying newton's second law (a=f/m)
     %over a small time step
+    global points;
     for i = 1:length(points(:,1))
         points(i,6) = points(i,6) + points(i,8)*timeStep/points(i,10);
         points(i,7) = points(i,7) + points(i,9)*timeStep/points(i,10)-9.81;
@@ -115,6 +122,7 @@ function points = accelPoints(timeStep)
 end
 function dVector = axialDirVect(ptIndexes)
     %Finds the unit vector that points from point 1 to point 2
+    global points;
 
     %Finds the distance between 2 points
     dVector = distXY(points, ptIndexes(1), ptIndexes(2));
@@ -127,6 +135,8 @@ end
 function dxdy = distXY(points, ptIndexes)
     %finds the xy vector to get to point 2's position from point 1
     dxdy = zeros(1,2);
+
+    global points;
     
     % The formatting here is relevant as the vector must point from 1 to
     % 2 so tension (positive force) forces point1 towards equilibrium
@@ -137,11 +147,14 @@ function clength = currentLength(ptIndexes)
     %finds the current magnitude of the distance between 2 points using
     %their indexes
     %basic magnitude code
+    global points;
     distances = distXY(points, ptIndexes);
     clength = (distances(1)^2 + distances(2)^2)^0.5;
 end
 function ptIndexes = findPtIndexes(iL)
     %finds the indexes of the points a line is connected to
+    global points;
+    global lines;
     ptIDs = lines(iL,3:4);
     ptIndexes= [find(points(:,1)==ptIDs(1)), find(points(:,1)==ptIDs(2))];
 end
@@ -155,7 +168,8 @@ end
 function force = applyAxial(iL, ptIndexes)
     %applies an axial force to the connected points according to the
     %formula D=PL/(AE), rearranged to P = D(AE)/L
-    
+    global lines;
+
     %The original length is subtracted such that an increase in length is
     %reflected with a positive value for deflection
     deflection =  currentLength(ptIndexes) - lines(iL,8);
@@ -174,6 +188,7 @@ function force = applyAxial(iL, ptIndexes)
 end
 function points = applyForce(force, unitVector, pointID)
     %Applies forces to a point based on a force and a unit vector
+    global points;
     
     %unit vector determines relative magnitudes of the forces
     points(pointID,8) = points(pointID,8) + force*unitVector(1);
