@@ -15,6 +15,8 @@ global allButtons;
 global allPlottedPoints;
 global allPlottedLines;
 global allMaterials;
+global points;
+global lines;
 
 global ptIDCount;
 global lnIDCount;
