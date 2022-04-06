@@ -15,7 +15,9 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
     disableAll(editBtn);
     resultAxes.Visible = "on";
     mainAxes.Visible = "off";
+    set([mainAxes.Children], "Visible", "off");
     isStarting = 1;
+    hold(resultAxes, "on");
 
     % Plot all vals on result plot
     while isStarting > 0
@@ -23,7 +25,10 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
         
         % Plot Points 
         for i = 1:p
-            resultPlottedPoints(i) = plot(points(i, 4), points(i, 5), "Color", "red", "LineWidth", 2, "Parent", resultAxes);
+            try
+                delete(resultPlottedPoints(i));
+            end
+            resultPlottedPoints(i) = plot(resultAxes, points(i, 4), points(i, 5), '.r', "LineWidth", 20);
         end
 
         % Plot Lines
@@ -38,8 +43,10 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
                     pt2 = [points(n, 4), points(n, 5)];
                 end
             end
+            
             resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", "red", "LineWidth", 1, "Parent", resultAxes);
         end
+        pause(0.1);
 
         % Check if simulation should continue
         if isStarting == 0
@@ -55,6 +62,5 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
         elseif isStarting == 1
             isStarting = 2;
         end
-        pause(0.1);
     end
 end

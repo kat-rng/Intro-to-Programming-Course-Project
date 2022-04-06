@@ -58,7 +58,7 @@ mainGrid = uiaxes("Parent", mainWindow ,"XLim", [-1, 21], "YLim", [-1, 11], "Pos
 generalLabel = uicontrol("Parent", mainWindow, "Style", "text", "String", "Bridge Constructor", "Position", [0.01 * appWidth, 0.95 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", titleFontSize, "FontWeight", "bold");
 
 disableDefaultInteractivity(mainGrid);
-hold on;
+hold(mainGrid, "on");
 
 % Point Button Generations
 pointLabel = uicontrol(mainWindow, "Style", "text", "String", "Point Functions", "Position", [0.015 * appWidth, 0.89 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);

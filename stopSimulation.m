@@ -7,6 +7,7 @@ function stopSimulation(buttonSrc, mainAxes, resultAxes)
     resetAllPoints();
     enableAll();
     mainAxes.Visible = "on";
+    set([mainAxes.Children], "Visible", "on");
     resultAxes.Visible = "off";
 
 end

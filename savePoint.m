@@ -12,7 +12,7 @@ function savePoint(fig, changedPtIndex, newX, newY, newFixedPos, newFixedRot, ax
 
     allPoints(changedPtIndex) = point(newX, newY, newFixedPos - 1, newFixedRot - 1, allPoints(changedPtIndex).ptID);
     delete(allPlottedPoints(changedPtIndex));
-    allPlottedPoints(changedPtIndex) = plot(axes, newX, newY, '.b', "LineWidth", 20, "Parent", axes);
+    allPlottedPoints(changedPtIndex) = plot(axes, newX, newY, '.b', "LineWidth", 20);
 
     for i = 1:a
         if getIndex(allLines(i).point1.ptID) == changedPtIndex

@@ -21,10 +21,10 @@ function updateAllPoints()
 
     % Reinput points for lines to give updated information on points, being
     % mass and connected lines.
-    for j = 1:b
-        pt1Index = allLines(j).point1.ptID;
-        pt2Index = allLines(j).point2.ptID;
-        allLines(j).point1 = allPoints(pt1Index);
-        allLines(j).point2 = allPoints(pt2Index);
+    for k = 1:b
+        pt1ID = allLines(k).point1.ptID;
+        pt2ID = allLines(k).point2.ptID;
+        allLines(k).point1 = allPoints(getIndex(pt1ID));
+        allLines(k).point2 = allPoints(getIndex(pt2ID));
     end
 end
