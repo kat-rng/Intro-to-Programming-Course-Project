@@ -10,10 +10,12 @@ function savePoint(fig, changedPtIndex, newX, newY, newFixedPos, newFixedRot, ax
 
     close(fig);
 
+    % Replots changed point.
     allPoints(changedPtIndex) = point(newX, newY, newFixedPos - 1, newFixedRot - 1, allPoints(changedPtIndex).ptID);
     delete(allPlottedPoints(changedPtIndex));
     allPlottedPoints(changedPtIndex) = plot(axes, newX, newY, '.b', "LineWidth", 20);
 
+    % Replots line positions affected by changed point.
     for i = 1:a
         if getIndex(allLines(i).point1.ptID) == changedPtIndex
             delete(allPlottedLines(i));

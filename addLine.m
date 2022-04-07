@@ -5,6 +5,7 @@ function addLine(obj, axes)
     global allPlottedLines;
     [~, a] = size(allPoints);
 
+    % General Material Values - Default for line creation
     global allMaterials;
     defaultMat = allMaterials(1);
     defaultWidth = 1;
@@ -16,6 +17,7 @@ function addLine(obj, axes)
     state = mod(currentState, 2);
 
     if state == 1
+        % Test if function should run
         if a < 2
             currentState = currentState + 1;
             return;
@@ -24,6 +26,7 @@ function addLine(obj, axes)
         disableAll(obj);
         obj.String = "Click to Cancel";
         
+        % Get first point
         try
             [point1, ~] = getPoint(axes);
         end
@@ -34,6 +37,8 @@ function addLine(obj, axes)
         end
         
         colorPt(point1, "red");
+
+        % Get second point, different from first
         while true
             [point2, ~] = getPoint(axes);
             if (point2.ptID ~= point1.ptID)

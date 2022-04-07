@@ -1,6 +1,6 @@
 function resetAllPoints()
-    % Runs when the simulation is stopped. Deletes all connected lines and
-    % resets all masses on points.
+    % Runs when the stored values are reset. Deletes all connected lines 
+    % and resets all masses on points.
 
     global allPoints;
     global allLines;

@@ -6,11 +6,13 @@ function [pointReturn, ptIndex] = getPoint(axes)
 
     global currentState;
 
+    % Get dimension of axes
     dimAxesX = get(axes, 'XLim');
     dimAxesY = get(axes, 'YLim');
     maxDist = sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
 
     while true
+        % Test to see if click should be a valid option
         state = mod(currentState, 2);
         if state == 0
             return;
@@ -18,12 +20,15 @@ function [pointReturn, ptIndex] = getPoint(axes)
         [x, y] = ginput(1);
         avaliablePts = [];
         
+        % Calcs distance between clicked location and all existing points.
         for i = 1:a
             dist = sqrt((allPoints(i).x - x)^2 + (allPoints(i).y - y)^2);
             if dist < maxDist
                 avaliablePts = [avaliablePts; dist, i];
             end
         end
+
+        % Gets closest point to clicked point within range.
         [l, ~] = size(avaliablePts);
         if l == 0
             continue

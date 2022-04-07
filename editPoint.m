@@ -5,6 +5,7 @@ function editPoint(button, axes)
     currentState = currentState + 1;
     state = mod(currentState, 2);
 
+    % Get general values
     global allPoints;
     [~, a] = size(allPoints);
 
@@ -22,6 +23,7 @@ function editPoint(button, axes)
     global allPlottedLines;
 
     if state == 1
+        % Test to see if function should run.
         if a < 1
             currentState = currentState + 1;
             return;
@@ -30,6 +32,7 @@ function editPoint(button, axes)
         disableAll(button);
         button.String = "Click to Cancel";
 
+        % Get closest point and location in index
         try
             [editPoint, editPtIndex] = getPoint(axes);
         end
@@ -38,24 +41,29 @@ function editPoint(button, axes)
             return;
         end
         button.Enable = 'off';
-
+        
+        % Open figure to edit point
         editFig = popUpWindow("Edit Point");
     
+        % Point Coords
         xValueLabel = uicontrol(editFig, "Style", "text", "String", "X Value: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         xValueEdit = uicontrol(editFig, "Style", "edit", "String", editPoint.x, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         yValueLabel = uicontrol(editFig, "Style", "text", "String", "Y Value: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         yValueEdit = uicontrol(editFig, "Style", "edit", "String", editPoint.y, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
 
+        % Fixed Motion Values
         ptMotionFixedLabel = uicontrol(editFig, "Style", "text", "String", "Fixed Position?: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         ptMotionFixedValue = uicontrol(editFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         ptMotionFixedValue.String = {"False", "True"};
         ptMotionFixedValue.Value = editPoint.fxdPt + 1;
 
+        % Fixed Rotational Values
         ptRotFixedLabel = uicontrol(editFig, "Style", "text", "String", "Fixed Rotation?: ", "Position", [0.2 * appWidth, 0.5 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         ptRotFixedValue = uicontrol(editFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.5 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         ptRotFixedValue.String = {"False", "True"};
         ptRotFixedValue.Value = editPoint.fxdA + 1;
 
+        % Button Functions
         saveButton = uicontrol(editFig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
         cancelButton = uicontrol(editFig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
         saveButton.Callback = @(btn, event) savePoint(editFig, editPtIndex, str2double(xValueEdit.String), str2double(yValueEdit.String), ptMotionFixedValue.Value, ptRotFixedValue.Value, axes);

@@ -9,6 +9,7 @@ function editLine(button, axes)
     global allPlottedLines;
     global allMaterials;
     
+    % General Values
     global allPoints;
     [~, a] = size(allLines);
 
@@ -21,6 +22,7 @@ function editLine(button, axes)
     buttonFontSize = appHeight * 0.018 * 2;
     
     if state == 1
+        % Test to see if function should run.
         if a < 1
             currentState = currentState + 1;
             return;
@@ -29,23 +31,28 @@ function editLine(button, axes)
         disableAll(button);
         button.String = "Click to Cancel";
 
+        % Get line
         try
             lineIndex = getLine(axes);
         end
         button.Enable = 'off';
 
+        % Open popup edit window
         editFig = popUpWindow("Edit Line");
         
+        % Beam number values
         beamWidthLabel = uicontrol(editFig, "Style", "text", "String", "Line Width: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         beamWidthValue = uicontrol(editFig, "Style", "edit", "String", allLines(lineIndex).width, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         beamHeightLabel = uicontrol(editFig, "Style", "text", "String", "Line Height: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         beamHeightValue = uicontrol(editFig, "Style", "edit", "String", allLines(lineIndex).height, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
 
+        % Material Values
         beamMatLabel = uicontrol(editFig, "Style", "text", "String", "Material: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         beamMatValue = uicontrol(editFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
         beamMatValue.String = {allMaterials(1).name, allMaterials(2).name};
         beamMatValue.Value = getMatIndex(allLines(lineIndex).material.name);
 
+        % Buttons
         saveButton = uicontrol(editFig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
         cancelButton = uicontrol(editFig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
         saveButton.Callback = @(btn, event) saveLine(editFig, lineIndex, str2double(beamWidthValue.String), str2double(beamHeightValue.String), beamMatValue.String(beamMatValue.Value));

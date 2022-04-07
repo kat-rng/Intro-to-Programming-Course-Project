@@ -1,5 +1,6 @@
 classdef bridgeMaterial
     properties
+        % Values for material
         name;
         matID;
         density;
