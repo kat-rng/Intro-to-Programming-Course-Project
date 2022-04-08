@@ -99,13 +99,16 @@ colorPlot.Visible = "off";
 simulationDisplays = [tensionLabel, compressionLabel, tensionColor, compressionColor];
 
 % Clear Button
-clearButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Reset Program", "Position", [0.825 * appWidth, 0.15 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
+clearButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Reset Program", "Position", [0.825 * appWidth, 0.22 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 
 % Help Button
-helpButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Help", "Position", [0.825 * appWidth, 0.05 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "#8BA7A9");
+helpButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Help", "Position", [0.825 * appWidth, 0.15 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "#8BA7A9");
+
+% Close Button
+closeButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Close", "Position", [0.825 * appWidth, 0.08 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "#8BA7A9");
 
 % All Button Array - For Disabling in Functions
-allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, simulateButton, editButton, clearButton, helpButton];
+allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, simulateButton, editButton, clearButton, helpButton, closeButton];
 
 % Establish Commands
 pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
@@ -118,3 +121,4 @@ clearButton.Callback = @resetProgram;
 helpButton.Callback = @(btn, event) showHelp(event.Source);
 simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, mainGrid, resultGrid, errorLabel, simulationDisplays);
 editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid, errorLabel, simulationDisplays);
+closeButton.Callback = @(btn, event) close(mainWindow);
