@@ -14,6 +14,8 @@ lines = zeros(11,10);
 % current length and angle will have to be calculated anyway
 
 forces = zeros(1,0);
+% Function to convert actual data
+% convertToCalc();
 testData();
 
 else
