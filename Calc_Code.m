@@ -85,7 +85,7 @@ function a = jeb()
     a=0;
     
     %May be changeable later but for now it will be hard coded
-    timeStep = 0.1;
+    timeStep = 0.05;
     
     %Set all the forces to 0
     points(:,8:9)=0;
@@ -124,8 +124,8 @@ function p = accelPoints(timeStep)
     global points;
     p=0;
     for i = 1:length(points(:,1))
-        points(i,6) = points(i,6) + points(i,8)*timeStep/points(i,10);
-        points(i,7) = points(i,7) + points(i,9)*timeStep/points(i,10)-9.81*timeStep;
+        points(i,6) = points(i,6)/2 + points(i,8)*timeStep/points(i,10);
+        points(i,7) = points(i,7)/2 + points(i,9)*timeStep/points(i,10)-9.81*timeStep;
     end
 end
 function dVector = axialDirVect(ptIndexes)
