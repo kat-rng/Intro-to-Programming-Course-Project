@@ -1,4 +1,4 @@
-function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
+function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, errorLabel, simulationDisplays)
     % Runs the simulation of the model.
     global isStarting;
 
@@ -16,6 +16,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes)
     resultAxes.Visible = "on";
     mainAxes.Visible = "off";
     set([mainAxes.Children], "Visible", "off");
+    set(simulationDisplays, "Visible", "on");
     isStarting = 1;
     hold(resultAxes, "on");
 

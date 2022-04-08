@@ -18,6 +18,7 @@ function removeLine(obj, axes)
         disableAll(obj);
         obj.String = "Click to Cancel";
         
+        % Attempts to get line on click.
         try
             lineIndex = getLine(axes);
         end
@@ -26,6 +27,7 @@ function removeLine(obj, axes)
             return;
         end
 
+        % Removes line from plot and data
         delete(allPlottedLines(lineIndex));
         allPlottedLines(lineIndex) = [];
         allLines(lineIndex) = [];

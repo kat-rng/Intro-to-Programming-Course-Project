@@ -7,6 +7,7 @@ function saveLine(fig, lineIndex, newWidth, newHeight, newMat)
     
     close(fig);
 
+    % Replots line and saves data.
     inputMat = getMatIndex(newMat);
     delete(allPlottedLines(lineIndex));
     allLines(lineIndex) = connectorLine(allLines(lineIndex).point1.ptID, allLines(lineIndex).point2.ptID, allMaterials(inputMat), newWidth, newHeight, allLines(lineIndex).lnID);

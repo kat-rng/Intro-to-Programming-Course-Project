@@ -34,6 +34,7 @@ lnIDCount = 0;
 editPresent = 0;
 
 %% Generate Materials
+%name, density, maxShear, maxAxial, youngs, shearMod, id
 wood = bridgeMaterial("Wood", 1500, 1, 1, (10^6), 6.2, 1);
 test = bridgeMaterial("Test", 2000, 2, 2, (10^7), 7, 2);
 allMaterials = [wood, test];
@@ -79,8 +80,16 @@ simulateLabel = uicontrol(mainWindow, "Style", "text", "String", "Simulation Con
 simulateButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Start Simulation", "Position", [0.04 * appWidth, 0.45 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "green");
 editButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Stop Simulation and Edit", "Position", [0.04 * appWidth, 0.4 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "red");
 
-% Results Display
-resultLabel = uicontrol(mainWindow, "Style", "text", "String", "Results:", "Position", [0.015 * appWidth, 0.275 * appHeight, 0.1 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
+% Simulation Displays - To be shown during simulation for stresses, bream
+% breaks, and appropiate labels
+errorLabel = uicontrol(mainWindow, "Style", "text", "String", "Error: Beam(s) are broken", "Position", [0.2625 * appWidth, 0.25 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize, "ForegroundColor", "red", "Visible", "off");
+tensionLabel = uicontrol(mainWindow, "Style", "text", "String", "Tension Forces:", "Position", [0.15 * appWidth, 0.20 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
+compressionLabel = uicontrol(mainWindow, "Style", "text", "String", "Compression Forces:", "Position", [0.15 * appWidth, 0.15 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
+colorPlot = uiaxes("Parent", mainWindow, "XLim", [0,1], "YLim", [0,3], "Position", [appWidth * 0.35, appHeight * 0.15, appWidth * 0.35, appHeight * 0.1]);
+tensionColor = rectangle("Parent", colorPlot, "FaceColor", "blue", "Position", [0,2,1,1], "Visible", "off");
+compressionColor = rectangle("Parent", colorPlot, "FaceColor", "red", "Position", [0,0,1,1], "Visible", "off");
+colorPlot.Visible = "off";
+simulationDisplays = [tensionLabel, compressionLabel, tensionColor, compressionColor];
 
 % Clear Button
 clearButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Reset Program", "Position", [0.825 * appWidth, 0.15 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
@@ -100,5 +109,5 @@ lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
 lineEditButton.Callback = @(btn, event) editLine(event.Source, mainGrid);
 clearButton.Callback = @resetProgram;
 helpButton.Callback = @(btn, event) showHelp(event.Source);
-simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, mainGrid, resultGrid);
-editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid);
+simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, mainGrid, resultGrid, errorLabel, simulationDisplays);
+editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid, errorLabel, simulationDisplays);

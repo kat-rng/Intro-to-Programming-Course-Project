@@ -15,7 +15,8 @@ function lineReturnIndex = getLine(axes)
         [x, y] = ginput(1);
         lineDistance = [];
 
-        % Calc closest line
+        % Calc closest line - tests if point is closest to line or
+        % endpoints and determines overall closest distance.
         for i = 1:l
             v1 = allLines(i).point1;
             v2 = allLines(i).point2;
@@ -37,6 +38,8 @@ function lineReturnIndex = getLine(axes)
 
             lineDistance = [lineDistance; dist, i];
         end
+
+        % Gets closest line to point clicked.
         [closestDist, lineReturnIndex] = min(lineDistance(:, 1));
         if closestDist < maxDist
             break;
