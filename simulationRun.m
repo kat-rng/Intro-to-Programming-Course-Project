@@ -2,6 +2,8 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, errorLabel, sim
     % Runs the simulation of the model.
     global isStarting;
 
+    global allPoints;
+    global allLines;
     global points;
     global lines;
     [p, ~] = size(points);
@@ -29,7 +31,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, errorLabel, sim
             try
                 delete(resultPlottedPoints(i));
             end
-            resultPlottedPoints(i) = plot(resultAxes, points(i, 4), points(i, 5), '.r', "LineWidth", 20);
+            resultPlottedPoints(i) = plot(resultAxes, points(i, 4), points(i, 5), '.g', "LineWidth", 20);
         end
 
         % Plot Lines
@@ -47,8 +49,14 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, errorLabel, sim
                     pt2 = [points(n, 4), points(n, 5)];
                 end
             end
-            
-            resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", "red", "LineWidth", 1, "Parent", resultAxes);
+            distance = sqrt(((pt1(1)-pt2(1))^2) + ((pt1(2)-pt2(2))^2));
+            color = "green";
+            if distance > lines(j, 8)
+                color = "blue";
+            elseif distance < lines(j, 8)
+                color = "red";
+            end
+            resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", color, "LineWidth", 1, "Parent", resultAxes);
         end
         pause(0.1);
 
