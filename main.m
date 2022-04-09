@@ -83,15 +83,19 @@ editButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Stop Simula
 
 % Simulation Displays - To be shown during simulation for stresses, bream
 % breaks, and appropiate labels
-tensionLabel = uicontrol(mainWindow, "Style", "text", "String", "Tension Forces:", "Position", [0.15 * appWidth, 0.20 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
-neutralLabel = uicontrol(mainWindow, "Style", "text", "String", "Neutral:", "Position", [0.15 * appWidth, 0.15 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
-compressionLabel = uicontrol(mainWindow, "Style", "text", "String", "Compression Forces:", "Position", [0.15 * appWidth, 0.10 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
-colorPlot = uiaxes("Parent", mainWindow, "XLim", [0,1], "YLim", [0,5], "Position", [appWidth * 0.35, appHeight * 0.10, appWidth * 0.35, appHeight * 0.15]);
-tensionColor = rectangle("Parent", colorPlot, "FaceColor", "blue", "Position", [0,4,1,1], "Visible", "off");
-neutralColor = rectangle("Parent", colorPlot, "FaceColor", "magenta", "Position", [0,2,1,1], "Visible", "off");
-compressionColor = rectangle("Parent", colorPlot, "FaceColor", "red", "Position", [0,0,1,1], "Visible", "off");
+tensionLabel = uicontrol(mainWindow, "Style", "text", "String", "Tension Forces", "Position", [0.52 * appWidth, 0.17 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
+neutralLabel = uicontrol(mainWindow, "Style", "text", "String", "Neutral", "Position", [0.355 * appWidth, 0.17 * appHeight, 0.10 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
+compressionLabel = uicontrol(mainWindow, "Style", "text", "String", "Compression Forces", "Position", [0.1875 * appWidth, 0.17 * appHeight, 0.14 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
+colorPlot = uiaxes("Parent", mainWindow, "XLim", [0,21], "YLim", [0,1], "Position", [appWidth * 0.15, appHeight * 0.2, appWidth * 0.5, appHeight * 0.075], "Visible", "off");
+colorGradient = zeros(1, 21);
+for i = 1:11
+    colorGradient(1, i+10) = rectangle("Parent", colorPlot, "FaceColor", [1 - (i/11), 0, 1], "Position", [i+10,0,1,1], "Visible", "off");
+end
+for j = 1:10
+    colorGradient(1, j) = rectangle("Parent", colorPlot, "FaceColor", [1, 0, (j/10)], "Position", [j,0,1,1], "Visible", "off");
+end
 colorPlot.Visible = "off";
-simulationDisplays = [tensionLabel, compressionLabel, tensionColor, compressionColor, neutralColor, neutralLabel];
+simulationDisplays = [tensionLabel, compressionLabel, neutralLabel, colorGradient];
 
 % Clear Button
 clearButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Reset Program", "Position", [0.825 * appWidth, 0.22 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
