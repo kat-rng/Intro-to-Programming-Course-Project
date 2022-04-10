@@ -13,7 +13,7 @@ function convertToCalc()
     l = length(allLines);
 
     points = zeros(p, 10);
-    lines = zeros(l, 10);
+    lines = zeros(l, 12);
 
     % Transfer values for points
     for i = 1:p
