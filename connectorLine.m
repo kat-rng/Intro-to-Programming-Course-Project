@@ -36,6 +36,7 @@ classdef connectorLine
             obj.angleInit = atan((point1.y - point2.y)/(point1.x - point2.x));
             obj.angleNow = obj.angleInit;
             obj.slopeInit = (point1.y - point2.y) / (point1.x - point2.x);
+            obj.mInertiaZ = 1/12 *width*height^3;
             
             obj.material = mat;
             obj.height = height;
