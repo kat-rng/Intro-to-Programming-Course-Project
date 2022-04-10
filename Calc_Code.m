@@ -67,7 +67,7 @@ end
 function calcMass()
     global points;
     global lines;
-    for i = 1:length(lines)
+    for i = 1:length(lines(:,1))
         %calculate the mass by multiplying the density by the volume of the
         %beam
         m = lines(i,5)*lines(i,7)*lines(i,8);
