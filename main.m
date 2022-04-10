@@ -71,10 +71,10 @@ pointRemoveButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Remo
 pointEditButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Edit Point", "Position", [0.04 * appWidth, 0.75 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 
 % Line Button Generations
-lineLabel = uicontrol(mainWindow, "Style", "text", "String", "Connecting Line Functions", "Position", [0.015 * appWidth, 0.69 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
-lineAddButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Add Connecting Line", "Position", [0.04 * appWidth, 0.65 * appHeight, 0.25 * appWidth, 0.05* appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
-lineRemoveButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Remove Connecting Line", "Position", [0.04 * appWidth, 0.6 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
-lineEditButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Edit Connecting Line", "Position", [0.04 * appWidth, 0.55 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
+lineLabel = uicontrol(mainWindow, "Style", "text", "String", "Beam Functions", "Position", [0.015 * appWidth, 0.69 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
+lineAddButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Add Beam", "Position", [0.04 * appWidth, 0.65 * appHeight, 0.25 * appWidth, 0.05* appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
+lineRemoveButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Remove Beam", "Position", [0.04 * appWidth, 0.6 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
+lineEditButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Edit Beam", "Position", [0.04 * appWidth, 0.55 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 
 % Simulation Buttons
 simulateLabel = uicontrol(mainWindow, "Style", "text", "String", "Simulation Control", "Position", [0.015 * appWidth, 0.49 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);

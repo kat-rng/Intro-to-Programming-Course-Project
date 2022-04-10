@@ -23,7 +23,7 @@ function removeLine(obj, axes)
             lineIndex = getLine(axes);
         end
 
-        if obj.String == "Remove Connecting Line"
+        if obj.String == "Remove Beam"
             return;
         end
 
@@ -32,10 +32,10 @@ function removeLine(obj, axes)
         allPlottedLines(lineIndex) = [];
         allLines(lineIndex) = [];
         currentState = currentState + 1;
-        obj.String = "Remove Connecting Line";
+        obj.String = "Remove Beam";
         enableAll();
     else
-        obj.String = "Remove Connecting Line";
+        obj.String = "Remove Beam";
         enableAll();
     end
 end

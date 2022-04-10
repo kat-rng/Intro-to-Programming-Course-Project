@@ -35,15 +35,19 @@ function editLine(button, axes)
         try
             lineIndex = getLine(axes);
         end
+        if mod(currentState, 2) == 0
+            return;
+        end
+        
         button.Enable = 'off';
 
         % Open popup edit window
-        editFig = popUpWindow("Edit Line");
+        editFig = popUpWindow("Edit Beam");
         
         % Beam number values
-        beamWidthLabel = uicontrol(editFig, "Style", "text", "String", "Line Width: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        beamWidthLabel = uicontrol(editFig, "Style", "text", "String", "Beam Width: ", "Position", [0.2 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         beamWidthValue = uicontrol(editFig, "Style", "edit", "String", allLines(lineIndex).width, "Position", [0.5 * appWidth, 0.8 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
-        beamHeightLabel = uicontrol(editFig, "Style", "text", "String", "Line Height: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
+        beamHeightLabel = uicontrol(editFig, "Style", "text", "String", "Beam Height: ", "Position", [0.2 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         beamHeightValue = uicontrol(editFig, "Style", "edit", "String", allLines(lineIndex).height, "Position", [0.5 * appWidth, 0.7 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
 
         % Material Values
@@ -61,11 +65,11 @@ function editLine(button, axes)
         % Wait for figure to close
         uiwait(editFig);
 
-        button.String = "Edit Connecting Line";
+        button.String = "Edit Beam";
         enableAll();
         currentState = currentState + 1;
     else
-        button.String = "Edit Connecting Line";
+        button.String = "Edit Beam";
         enableAll();
     end
 

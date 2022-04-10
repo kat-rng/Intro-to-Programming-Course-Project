@@ -58,7 +58,7 @@ function addLine(obj, axes)
         for i = 1:l
             if (point1.ptID == allLines(i).point1.ptID) && (point2.ptID == allLines(i).point2.ptID)
                 currentState = currentState + 1;
-                obj.String = "Add Connecting Line";
+                obj.String = "Add Beam";
                 enableAll();
                 return;
             end
@@ -70,10 +70,10 @@ function addLine(obj, axes)
         allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'blue', 'LineWidth', 0.1, "Parent", axes)];
         
         enableAll();
-        obj.String = "Add Connecting Line";
+        obj.String = "Add Beam";
         currentState = currentState + 1;
     else
-        obj.String = "Add Connecting Line";
+        obj.String = "Add Beam";
         enableAll();
         for i = 1:a
             colorPt(allPoints(i), "blue");
