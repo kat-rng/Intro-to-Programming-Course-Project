@@ -22,6 +22,6 @@ function convertToCalc()
 
     % Transfer values for lines
     for j = 1:l
-        lines(j, :) = [allLines(j).lnID, allLines(j).material.matID, allLines(j).point1.ptID, allLines(j).point2.ptID, allLines(j).material.density, allLines(j).angleInit, allLines(j).area, allLines(j).lengthInit, allLines(j).material.youngsModulus, allLines(j).material.shearModulus, llLines(j).material.maxAxial, 0];
+        lines(j, :) = [allLines(j).lnID, allLines(j).material.matID, allLines(j).point1.ptID, allLines(j).point2.ptID, allLines(j).material.density, allLines(j).angleInit, allLines(j).area, allLines(j).lengthInit, allLines(j).material.youngsModulus, allLines(j).material.shearModulus, allLines(j).material.maxAxial, 0];
     end
 end
