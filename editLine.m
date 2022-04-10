@@ -59,7 +59,7 @@ function editLine(button, axes)
         % Buttons
         saveButton = uicontrol(editFig, "Style", "pushbutton", "String", "Save", "Position", [0.1 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
         cancelButton = uicontrol(editFig, "Style", "pushbutton", "String", "Cancel", "Position", [0.6 * appWidth, 0.2 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "BackgroundColor","#8BA7A9", "FontSize", buttonFontSize);
-        saveButton.Callback = @(btn, event) saveLine(editFig, lineIndex, str2double(beamWidthValue.String), str2double(beamHeightValue.String), beamMatValue.String(beamMatValue.Value));
+        saveButton.Callback = @(btn, event) saveLine(editFig, lineIndex, str2double(beamWidthValue.String), str2double(beamHeightValue.String), beamMatValue.String(beamMatValue.Value), axes);
         cancelButton.Callback = @(btn, event) close(editFig);
         
         % Wait for figure to close

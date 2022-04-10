@@ -1,4 +1,4 @@
-function saveLine(fig, lineIndex, newWidth, newHeight, newMat)
+function saveLine(fig, lineIndex, newWidth, newHeight, newMat, axes)
     % Applies chances to the selected line and recalculated needed values.
 
     global allLines;
