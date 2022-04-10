@@ -8,8 +8,8 @@ function addLine(obj, axes)
     % General Material Values - Default for line creation
     global allMaterials;
     defaultMat = allMaterials(1);
-    defaultWidth = 1;
-    defaultHeight = 1;
+    defaultWidth = 2;
+    defaultHeight = 4;
 
     global lnIDCount;
     global currentState;
