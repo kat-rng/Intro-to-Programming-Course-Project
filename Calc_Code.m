@@ -10,7 +10,7 @@ points = zeros(7,10);
 
 lines = zeros(11,12);
 % 1     2         3    4    5        6          7     8           9           10             11        12
-% LnID, material, Pt1, Pt2, density, initAngle, Area, initLength, Young'sMod, Shear Modulus, maxAxial, axialForce
+% LnID, material, Pt1, Pt2, density, initAngle, Area, initLength, Young'sMod, Shear Modulus, maxAxial, forceFactor
 % current length and angle will have to be calculated anyway
 
 forces = zeros(1,0);
@@ -184,6 +184,7 @@ function force = applyAxial(iL, ptIndexes)
     %Calculate forces using the previously mentioned equations
     %Names of forces:   Area       Young'sMod   originalLength
     force = deflection*lines(iL,7)*lines(iL,9)/lines(iL,8);
+    lines(iL, 12) = force/lines(iL, 11);
     
     %Find the unit vector for the points
     unitVector = axialDirVect(ptIndexes);
