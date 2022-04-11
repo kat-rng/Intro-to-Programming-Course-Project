@@ -1,6 +1,8 @@
 global isStarting;
 global points;
 global lines;
+global ptIDCount;
+global lnIDCount;
 if(isStarting==1)
 points = zeros(7,10);
 %TODO: add a pointer for what PtID to assign to any given new point
