@@ -261,7 +261,7 @@ function l = splitLine(iL)
     averageVy = (points(ptIndexes(1), 7) + points(ptIndexes(2), 7)) / 2;
     
     
-    for i = length(points(:,1)):length(points(:,1))+2
+    for i = length(points(:,1))+1:length(points(:,1))+2
         %ptIDCount gets incremented after the value is set, using standard 
         %to set ptID for new point. 2 points are needed for the ends of the 
         %split line
