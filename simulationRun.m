@@ -25,10 +25,11 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
 
     % Plot all vals on result plot
     while isStarting > 0
-        [p, ~] = size(points);
-        [l, ~] = size(lines);
 
         run("Calc_Code.m");
+        
+        [p, ~] = size(points);
+        [l, ~] = size(lines);
         
         % Display every X frames
         if mod(count, skipFrames) == 0
