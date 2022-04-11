@@ -57,7 +57,7 @@ function p = testData()
     lines(:,4) = [2,3,4,6,7,5,2,6,3,7,4];
     lines(:,2) = 1;
     lines(:,8) = 3;
-    lines(:,11) = 2.4*10^6;
+    lines(:,11) = 2.4*10^2;
     % area of a 2x4 in meters^2
     lines(:,7) = 0.00516128;
     %young's modulus of bass wood
