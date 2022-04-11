@@ -27,6 +27,10 @@ end
 function p = testData()
     global points;
     global lines;
+    global ptIDCount;
+    global lnIDCount;
+    ptIDCount = 8;
+    lnIDCount = 12;
     
     points = zeros(7,10);
     lines = zeros(11,12);
