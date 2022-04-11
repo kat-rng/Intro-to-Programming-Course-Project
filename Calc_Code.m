@@ -244,6 +244,10 @@ function l = splitLine(iL)
     %display
     %disp(iL);
     
+    %setting the value that causes it to split to be 0, it gets copied to
+    %the new line later
+    lines(iL,12)=0;
+    
     %return value
     l=1;
     
