@@ -289,8 +289,10 @@ function l = splitLine(iL)
     
     %setting the original length to the length divided by 2. It may be
     %worth lowering that.
-    lines(iL2,8) = lines(iL,8)/2;
-    lines(iL,8) = lines(iL,8)/2;
+    newLengthXY = distXY(ptIndexes)/2;
+    nlength = (newLengthXY(1)^2 + newLengthXY(2)^2)^0.5;
+    lines(iL2,8) = nlength;
+    lines(iL,8) = nlength;
     
     %seting up new endpoints
     %line is associated with pt 2 of original line

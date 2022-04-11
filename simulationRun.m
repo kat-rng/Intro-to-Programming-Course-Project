@@ -6,9 +6,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
     global allLines;
     global points;
     global lines;
-    [p, ~] = size(points);
-    [l, ~] = size(lines);
-
+    
     resultPlottedPoints = [];
     resultPlottedLines = [];
     
@@ -27,6 +25,9 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
 
     % Plot all vals on result plot
     while isStarting > 0
+        [p, ~] = size(points);
+        [l, ~] = size(lines);
+
         run("Calc_Code.m");
         
         % Display every X frames
