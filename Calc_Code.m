@@ -185,6 +185,13 @@ function force = applyAxial(iL, ptIndexes)
     %Calculate forces using the previously mentioned equations
     %Names of forces:   Area       Young'sMod   originalLength
     force = deflection*lines(iL,7)*lines(iL,9)/lines(iL,8);
+    
+    
+    %Find the previous force
+    prevForce = lines(iL, 12)*lines(iL, 11);
+    
+    
+    %Find the ratio between force and the max force the beam can take
     lines(iL, 12) = force/lines(iL, 11);
     
     %Find the unit vector for the points
