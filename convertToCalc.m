@@ -17,7 +17,7 @@ function convertToCalc()
 
     % Transfer values for points
     for i = 1:p
-        points(i, :) = [allPoints(i).ptID, allPoints(i).fxdA, allPoints(i).fxdPt, allPoints(i).x, allPoints(i).y, 0, 0, 0, 0, allPoints(i).mass];
+        points(i, :) = [allPoints(i).ptID, allPoints(i).fxdPt, allPoints(i).fxdA, allPoints(i).x, allPoints(i).y, 0, 0, 0, 0, allPoints(i).mass];
     end
 
     % Transfer values for lines

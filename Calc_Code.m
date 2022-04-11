@@ -8,7 +8,7 @@ points = zeros(7,10);
 %TODO: add a pointer for what PtID to assign to any given new point
 % points(i,4) = x position of index i
 % 1     2       3       4  5  6   7   8   9   10
-% PtID, FixedA, FixedP, x, y, vx, vy, xf, yf, mass
+% PtID, FixedP, FixedA, x, y, vx, vy, xf, yf, mass
 
 lines = zeros(11,12);
 % 1     2         3    4    5        6          7     8           9           10             11        12

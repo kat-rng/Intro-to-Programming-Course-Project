@@ -22,13 +22,14 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
     isStarting = 1;
     hold(resultAxes, "on");
     count = 0;
+    % How often should display update.
     skipFrames = 5;
 
     % Plot all vals on result plot
     while isStarting > 0
         run("Calc_Code.m");
         
-        % Display every 5 frames
+        % Display every X frames
         if mod(count, skipFrames) == 0
             % Plot Points 
             for i = 1:p
@@ -53,12 +54,11 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
                         pt2 = [points(n, 4), points(n, 5)];
                     end
                 end
-                distance = sqrt(((pt1(1)-pt2(1))^2) + ((pt1(2)-pt2(2))^2));
-                color = "magenta";
-                if distance > lines(j, 8)
-                    color = "blue";
-                elseif distance < lines(j, 8)
-                    color = "red";
+                color = [1.0, 0, 1.0];
+                if lines(j, 12) < 0
+                    color = [1.0, 0, abs(lines(j, 12))];
+                elseif lines(j, 12) > 0
+                    color = [lines(j,12), 0, 1];
                 end
                 resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", color, "LineWidth", 1, "Parent", resultAxes);
             end
