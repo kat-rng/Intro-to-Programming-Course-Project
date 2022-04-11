@@ -98,6 +98,9 @@ function a = jeb()
     %apply the current forces
     applyAllForces();
     
+    %check if the lines should split, if so cut in half
+    checkSplit();
+    
     %use the forces to determine the change in velocity
     accelPoints(timeStep);
     
@@ -213,6 +216,18 @@ function p = applyForce(force, unitVector, pointID)
     points(pointID,8) = points(pointID,8) + force*unitVector(1);
     points(pointID,9) = points(pointID,9) + force*unitVector(2);
 end
+function l = checkSplit()
+    global lines;
+    l= 1;
+    
+    %iterate through lines and check if they should split. If so, call
+    %splitLine
+    for i = 1:length(lines(:,1))
+        if abs(lines(i,12)) > 0.5
+            splitLine(i);
+        end
+    end
+end
 function l = splitLine(iL)
     global points;
     global lines;
@@ -222,13 +237,19 @@ function l = splitLine(iL)
     %again because the endpoint doesn't move enough to get away from the
     %breaking limit
     
+    %display
+    %disp(iL);
+    
+    %return value
+    l=1;
+    
     %Find the points associated with the beam being split
     ptIndexes = findPtIndexes(iL);
     %Find the midpoint of that beam
     midpoint = [points(ptIndexes(1),4), points(ptIndexes(1),5)] + distXY(ptIndexes)/2;
     
     %finding the quarter mass used for adding mass to pts
-    quarterMass = lines(i,5)*lines(i,7)*lines(i,8)/4;
+    quarterMass = lines(iL,5)*lines(iL,7)*lines(iL,8)/4;
     
     %subtract a quarter of the beam mass (since they currently have 1/2 the
     %original beam mass, which is now split in half. This may not work
