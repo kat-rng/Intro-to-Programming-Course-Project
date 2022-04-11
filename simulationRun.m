@@ -21,7 +21,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
     hold(resultAxes, "on");
     count = 0;
     % How often should display update.
-    skipFrames = 5;
+    skipFrames = 1;
 
     % Plot all vals on result plot
     while isStarting > 0
