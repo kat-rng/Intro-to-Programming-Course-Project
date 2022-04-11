@@ -204,3 +204,67 @@ function p = applyForce(force, unitVector, pointID)
     points(pointID,8) = points(pointID,8) + force*unitVector(1);
     points(pointID,9) = points(pointID,9) + force*unitVector(2);
 end
+function l = splitLine(iL)
+    global points;
+    global lines;
+    global ptIDCount;
+    global lnIDCount;
+    %I am concerned that once a line splits it will split over and over
+    %again because the endpoint doesn't move enough to get away from the
+    %breaking limit
+    
+    %Find the points associated with the beam being split
+    ptIndexes = findPtIndexes(iL);
+    %Find the midpoint of that beam
+    midpoint = [points(ptIndexes(1),4), points(ptIndexes(1),5)] + distXY(ptIndexes)/2;
+    
+    %finding the quarter mass used for adding mass to pts
+    quarterMass = lines(i,5)*lines(i,7)*lines(i,8)/4;
+    
+    %subtract a quarter of the beam mass (since they currently have 1/2 the
+    %original beam mass, which is now split in half. This may not work
+    %since 2 points are having their mass removed simultaneously
+    points(ptIndexes, 10) = points(ptIndexes, 10) - quarterMass;
+    
+    %Finding the average velocity of the endpoints
+    averageVx = (points(ptIndexes(1), 6) + points(ptIndexes(2), 6)) / 2;
+    averageVy = (points(ptIndexes(1), 7) + points(ptIndexes(2), 7)) / 2;
+    
+    
+    for i = length(points(:,1)):length(points(:,1))+2
+        %ptIDCount gets incremented after the value is set, using standard 
+        %to set ptID for new point. 2 points are needed for the ends of the 
+        %split line
+        points(i, 1) = ptIDCount;
+        
+        %setting all the other variables. Explanations of what they are can
+        %be found above
+        points(i, 4) = midpoint(1);
+        points(i, 5) = midpoint(2);
+        points(i, 6) = averageVx;
+        points(i, 7) = averageVy;
+        points(i, 10) = quarterMass;
+        ptIDCount = ptIDCount+1;
+    end
+    
+    %making the new line location
+    lines(length(lines(:,1))+1, 1) = lnIDCount;
+    lnIDCount = lnIDCount+1;
+    
+    iL2 = length(lines(:,1));
+    %Taking everything after the index and copying the data from the
+    %original line to the split off line. It uses the length function so
+    %this doesn't throw an error later once this is done
+    lines(iL2,2:length(lines(1,:))) = lines(iL,2:length(lines(1,:)));
+    
+    %setting the original length to the length divided by 2. It may be
+    %worth lowering that.
+    lines(iL2,8) = lines(iL,8)/2;
+    lines(iL,8) = lines(iL,8)/2;
+    
+    %seting up new endpoints
+    %line is associated with pt 2 of original line
+    lines(iL2,4) = ptIDCount-2;
+    %original line is now associated with pt 1 of original line
+    lines(iL,3) = ptIDCount-1;
+end
