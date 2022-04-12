@@ -58,9 +58,9 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
                 end
                 color = [1.0, 0, 1.0];
                 if lines(j, 12) < 0
-                    color = [1.0, 0, abs(lines(j, 12))];
+                    color = [1.0, 0, 1-abs(lines(j, 12))];
                 elseif lines(j, 12) > 0
-                    color = [lines(j,12), 0, 1];
+                    color = [1-lines(j,12), 0, 1];
                 end
                 resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", color, "LineWidth", 1, "Parent", resultAxes);
             end
