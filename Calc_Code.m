@@ -141,9 +141,10 @@ function p = accelPoints(timeStep)
     %over a small time step
     global points;
     p=0;
+    damp = (1+0.4*timeStep);
     for i = 1:length(points(:,1))
-        points(i,6) = points(i,6)/2 + points(i,8)*timeStep/points(i,10);
-        points(i,7) = points(i,7)/2 + points(i,9)*timeStep/points(i,10)-9.81*timeStep;
+        points(i,6) = points(i,6)/damp + points(i,8)*timeStep/points(i,10);
+        points(i,7) = points(i,7)/damp + points(i,9)*timeStep/points(i,10)-9.81*timeStep;
     end
 end
 function dVector = axialDirVect(ptIndexes)
