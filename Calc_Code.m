@@ -284,27 +284,27 @@ function l = splitLine(iL)
         points(i, 10) = quarterMass;
         ptIDCount = ptIDCount+1;
     end
-    
+
     %making the new line location
     lines(length(lines(:,1))+1, 1) = lnIDCount;
     lnIDCount = lnIDCount+1;
-    
+
     iL2 = length(lines(:,1));
     %Taking everything after the index and copying the data from the
     %original line to the split off line. It uses the length function so
-    %this doesn't throw an error later once this is done
+    %this doesn't throw an error later if the size of the lines is
+    %increased
     lines(iL2,2:length(lines(1,:))) = lines(iL,2:length(lines(1,:)));
-    
-    %setting the original length to the length divided by 2. It may be
-    %worth lowering that.
-    newLengthXY = distXY(ptIndexes)/2;
-    nlength = (newLengthXY(1)^2 + newLengthXY(2)^2)^0.5;
-    lines(iL2,8) = nlength;
-    lines(iL,8) = nlength;
-    
+
+    %uses the previously established newLength to set the new beams lengths
+    lines(iL2,8) = newLength;
+    lines(iL,8) = newLength;
+
     %seting up new endpoints
     %line is associated with pt 2 of original line
     lines(iL2,4) = ptIDCount-2;
     %original line is now associated with pt 1 of original line
     lines(iL,3) = ptIDCount-1;
+
+
 end
