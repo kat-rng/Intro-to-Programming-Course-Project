@@ -96,7 +96,7 @@ function a = jeb()
     a=0;
     
     %May be changeable later but for now it will be hard coded
-    timeStep = 0.05;
+    timeStep = 0.03;
     
     %Set all the forces to 0
     points(:,8:9)=0;
