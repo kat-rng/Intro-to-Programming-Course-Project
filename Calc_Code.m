@@ -35,13 +35,15 @@ function p = testData()
     points = zeros(7,10);
     lines = zeros(11,12);
     p= 1;
+    
+    yshift=5;
     %lower points
     for i = 1:4
         %setting x
         points(i,4) = (i-1)*3;
         
         %setting y
-        points(i,5) = 0;
+        points(i,5) = 0+yshift;
     end
     %upper points
     for i = 5:7
@@ -49,7 +51,7 @@ function p = testData()
         points(i,4) = (i-5)*3+1.5;
         
         %setting y
-        points(i,5) = 2.598076211;
+        points(i,5) = 2.598076211+yshift;
     end
     points(:,1) = 1:7;
     points(1,2) = 1;
