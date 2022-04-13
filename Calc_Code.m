@@ -119,7 +119,9 @@ function applyAllForces()
     %just iterates applyForces
     global lines;
     for i=1:length(lines(:,1))
-        applyForces(i);
+        if lines(i,2) ~= -1000
+            applyForces(i);
+        end
     end
 end
 function p = movePoints(timeStep)
