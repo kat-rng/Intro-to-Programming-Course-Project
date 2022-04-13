@@ -70,7 +70,7 @@ function p = testData()
     lines(:,7) = 0.00516128;
     %young's modulus of bass wood
     %lines(:,9) = 10100*10^6;
-    lines(:,9) = 1010000;
+    lines(:,9) = 1010000*6;
     %density of bass wood
     lines(:,5) = 415;
     calcMass();
