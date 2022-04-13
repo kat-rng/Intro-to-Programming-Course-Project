@@ -236,8 +236,10 @@ function l = checkSplit()
     %iterate through lines and check if they should split. If so, call
     %splitLine
     for i = 1:length(lines(:,1))
-        if abs(lines(i,12)) > 0.5
-            splitLine(i);
+        if abs(lines(i,12)) > 1
+            %splitLine(i);
+            lines(i,2) = -1000;
+            lines(i,12) = 0;
         end
     end
 end
