@@ -193,6 +193,8 @@ function force = applyAxial(iL, ptIndexes)
     %applies an axial force to the connected points according to the
     %formula D=PL/(AE), rearranged to P = D(AE)/L
     global lines;
+    n = 1;
+    damp = 1;
 
     %The original length is subtracted such that an increase in length is
     %reflected with a positive value for deflection
@@ -205,7 +207,7 @@ function force = applyAxial(iL, ptIndexes)
     
     %Find the previous force
     prevForce = lines(iL, 12)*lines(iL, 11);
-    
+    force = (force+(n-1)*prevForce)/(n*damp);
     
     %Find the ratio between force and the max force the beam can take
     lines(iL, 12) = force/lines(iL, 11);
