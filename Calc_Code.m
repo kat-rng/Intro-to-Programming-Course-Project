@@ -251,41 +251,46 @@ function l = splitLine(iL)
     %I am concerned that once a line splits it will split over and over
     %again because the endpoint doesn't move enough to get away from the
     %breaking limit
-    
+
     %display
     %disp(iL);
-    
+
     %setting the value that causes it to split to be 0, it gets copied to
     %the new line later
     lines(iL,12)=0;
-    
+
     %return value
     l=1;
-    
+
     %Find the points associated with the beam being split
     ptIndexes = findPtIndexes(iL);
-    %Find the midpoint of that beam
-    midpoint = [points(ptIndexes(1),4), points(ptIndexes(1),5)] + distXY(ptIndexes)/2;
-    
+    %Find the midpoint of that beam by averaging xs and ys
+    midpoint = [sum(points(ptIndexes,4))/2, sum(points(ptIndexes,5))/2];
+
+    %finds the lenth of the new beams by finding the distance between point
+    %1 and the midpoint
+    newLength = sum((midpoint-points(ptIndexes(1),4:5)).^2)^0.5;
+
     %finding the quarter mass used for adding mass to pts
     quarterMass = lines(iL,5)*lines(iL,7)*lines(iL,8)/4;
-    
+
     %subtract a quarter of the beam mass (since they currently have 1/2 the
     %original beam mass, which is now split in half. This may not work
     %since 2 points are having their mass removed simultaneously
     points(ptIndexes, 10) = points(ptIndexes, 10) - quarterMass;
-    
+
     %Finding the average velocity of the endpoints
     averageVx = (points(ptIndexes(1), 6) + points(ptIndexes(2), 6)) / 2;
     averageVy = (points(ptIndexes(1), 7) + points(ptIndexes(2), 7)) / 2;
-    
-    
+
+
     for i = length(points(:,1))+1:length(points(:,1))+2
-        %ptIDCount gets incremented after the value is set, using standard 
-        %to set ptID for new point. 2 points are needed for the ends of the 
+
+        %ptIDCount gets incremented after the value is set, using standard
+        %to set ptID for new point. 2 points are needed for the ends of the
         %split line
         points(i, 1) = ptIDCount;
-        
+
         %setting all the other variables. Explanations of what they are can
         %be found above
         points(i, 4) = midpoint(1);
