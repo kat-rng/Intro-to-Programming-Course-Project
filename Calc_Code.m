@@ -17,8 +17,8 @@ lines = zeros(11,12);
 
 forces = zeros(1,0);
 % Function to convert actual data
-% convertToCalc();
-testData();
+convertToCalc();
+%testData();
 
 else
     jeb();
