@@ -1,6 +1,9 @@
 global isStarting;
 global points;
 global lines;
+global timeStep;
+
+timeStep = 0.05;
 
 if(isStarting==1)
     %TODO: add a pointer for what PtID to assign to any given new point
@@ -17,7 +20,11 @@ if(isStarting==1)
     convertToCalc();
     %testData();
 else
-    for i= 1:5
+    reps = 1;
+    if(timeStep < 0.05)
+        reps = round(0.05/timeStep);
+    end
+    for i= 1:1
         jeb();
     end
 end
