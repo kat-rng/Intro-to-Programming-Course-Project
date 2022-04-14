@@ -34,8 +34,8 @@ lnIDCount = 0;
 editPresent = 0;
 
 %% Generate Materials
-%name,                        density,  maxShear,   maxAxial,   youngs, shearMod, id
-wood = bridgeMaterial("Wood", 1500,     1,          2.4*10^5, 1010000*2, 1,    1);
+%name, density, maxShear, maxAxial, youngs, shearMod, id
+wood = bridgeMaterial("Wood", 1500, 1, 1, (2.4*10^6), 6.2, 1);
 fakeWood = bridgeMaterial("Fake Wood", 1500, 1, 2.4*10^6, (10^6), 6.2, 2);
 test = bridgeMaterial("Test", 2000, 2, 2, (10^7), 7, 3);
 allMaterials = [wood, fakeWood, test];
