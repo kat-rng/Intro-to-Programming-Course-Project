@@ -96,7 +96,11 @@ for j = 1:10
     colorGradient(1, j) = rectangle("Parent", colorPlot, "FaceColor", [1, 0, (j/10)], "Position", [j,0,1,1], "Visible", "off");
 end
 colorPlot.Visible = "off";
-simulationDisplays = [tensionLabel, compressionLabel, neutralLabel, colorGradient];
+breakColor = uiaxes("Parent", mainWindow, "XLim", [0,1], "YLim", [0,1], "Position", [appWidth * 0.37, appHeight * 0.07, appWidth * 0.22, appHeight * 0.075], "Visible", "off");
+breakRectangleColor = rectangle("Parent", breakColor, "FaceColor", [1,1,0], "Position", [0,0,1,1], "Visible", "off");
+breakLabel = uicontrol(mainWindow, "Style", "text", "String", "Broken Beams:", "Position", [0.25 * appWidth, 0.085 * appHeight, 0.12 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
+
+simulationDisplays = [tensionLabel, compressionLabel, neutralLabel, colorGradient, breakRectangleColor, breakLabel];
 
 % Clear Button
 clearButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Reset Program", "Position", [0.825 * appWidth, 0.22 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
@@ -106,6 +110,9 @@ helpButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Help", "Pos
 
 % Close Button
 closeButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Close", "Position", [0.825 * appWidth, 0.08 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "#8BA7A9");
+
+% Time Step Slider
+timeSlider = uicontrol("Parent", mainWindow, "Style", "slider", "Units", "pixels", "Value", 0.01,"Max", 0.4, "Min", 0.01,"String", "Timestep", "Position", [0.25 * appWidth, 0.03 * appHeight, 0.45 * appWidth, 0.015 * appHeight]);
 
 % All Button Array - For Disabling in Functions
 allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, simulateButton, editButton, clearButton, helpButton, closeButton];
@@ -120,7 +127,7 @@ lineEditButton.Callback = @(btn, event) editLine(event.Source, mainGrid);
 clearButton.Callback = @resetProgram;
 helpButton.Callback = @(btn, event) showHelp(event.Source);
 simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, mainGrid, resultGrid, simulationDisplays);
-editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid, simulationDisplays);
+editButton.ButtonDownFcn = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid, simulationDisplays);
 closeButton.Callback = @(btn, event) close(mainWindow);
 
 showHelp(helpButton);

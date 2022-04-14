@@ -19,7 +19,7 @@ function savePoint(fig, changedPtIndex, newX, newY, newFixedPos, newFixedRot, ax
     for i = 1:a
         if getIndex(allLines(i).point1.ptID) == changedPtIndex
             delete(allPlottedLines(i));
-            if allLines(i).point1.x <= allPoints(changedPtIndex).x
+            if allLines(i).point2.x >= allPoints(changedPtIndex).x
                 allLines(i) = connectorLine(allPoints(changedPtIndex).ptID, allLines(i).point2.ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
             else
                 allLines(i) = connectorLine(allLines(i).point1.ptID, allPoints(changedPtIndex).ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
@@ -28,7 +28,7 @@ function savePoint(fig, changedPtIndex, newX, newY, newFixedPos, newFixedRot, ax
         end
         if getIndex(allLines(i).point2.ptID) == changedPtIndex
             delete(allPlottedLines(i));
-            if allLines(i).point2.x <= allPoints(changedPtIndex).x
+            if allLines(i).point1.x >= allPoints(changedPtIndex).x
                 allLines(i) = connectorLine(allPoints(changedPtIndex).ptID, allLines(i).point1.ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
             else
                 allLines(i) = connectorLine(allLines(i).point1.ptID, allPoints(changedPtIndex).ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
