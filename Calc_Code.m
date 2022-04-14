@@ -1,25 +1,21 @@
 global isStarting;
 global points;
 global lines;
-global ptIDCount;
-global lnIDCount;
+
 if(isStarting==1)
-points = zeros(7,10);
-%TODO: add a pointer for what PtID to assign to any given new point
-% points(i,4) = x position of index i
-% 1     2       3       4  5  6   7   8   9   10
-% PtID, FixedP, FixedA, x, y, vx, vy, xf, yf, mass
+    %TODO: add a pointer for what PtID to assign to any given new point
+    % points(i,4) = x position of index i
+    % 1     2       3       4  5  6   7   8   9   10
+    % PtID, FixedP, FixedA, x, y, vx, vy, xf, yf, mass
 
-lines = zeros(11,12);
-% 1     2         3    4    5        6          7     8           9           10             11        12
-% LnID, material, Pt1, Pt2, density, initAngle, Area, initLength, Young'sMod, Shear Modulus, maxAxial, forceFactor
-% current length and angle will have to be calculated anyway
+    % 1     2         3    4    5        6          7     8           9           10             11        12
+    % LnID, material, Pt1, Pt2, density, initAngle, Area, initLength, Young'sMod, Shear Modulus, maxAxial, forceFactor
+    % current length and angle will have to be calculated anyway
 
-forces = zeros(1,0);
-% Function to convert actual data
-convertToCalc();
-%testData();
-
+    forces = zeros(1,0);
+    % Function to convert actual data
+    convertToCalc();
+    %testData();
 else
     for i= 1:5
         jeb();
