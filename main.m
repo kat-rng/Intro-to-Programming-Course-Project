@@ -122,3 +122,5 @@ helpButton.Callback = @(btn, event) showHelp(event.Source);
 simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, mainGrid, resultGrid, simulationDisplays);
 editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid, simulationDisplays);
 closeButton.Callback = @(btn, event) close(mainWindow);
+
+showHelp(helpButton);
