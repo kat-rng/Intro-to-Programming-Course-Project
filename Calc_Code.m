@@ -21,7 +21,9 @@ convertToCalc();
 %testData();
 
 else
-    jeb();
+    for i= 1:5
+        jeb();
+    end
 end
 
 function p = testData()
