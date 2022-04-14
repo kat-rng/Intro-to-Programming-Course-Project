@@ -8,7 +8,7 @@ function lineReturnIndex = getLine(axes)
 
     dimAxesX = get(axes, 'XLim');
     dimAxesY = get(axes, 'YLim');
-    maxDist = sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
+    maxDist = 3 * sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
 
     while true && mod(currentState, 2) == 1
         % Get point clicked - used to determine closest line
