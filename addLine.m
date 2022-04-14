@@ -57,20 +57,20 @@ function addLine(obj, axes)
             end
             
             % Test if current line exists
+            countOverlap = 0;
             [~, l] = size(allLines);
             for i = 1:l
-                if (point1.ptID == allLines(i).point1.ptID) && (point2.ptID == allLines(i).point2.ptID)
-                    break;
+                if ((point1.ptID == allLines(i).point1.ptID) && (point2.ptID == allLines(i).point2.ptID))
+                    countOverlap = 1;;
                 end
             end
     
             % Add Line
-            allLines = [allLines, connectorLine(point1.ptID, point2.ptID, defaultMat, defaultWidth, defaultHeight, lnIDCount)];
-            lnIDCount = lnIDCount + 1;
-            allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'blue', 'LineWidth', 0.1, "Parent", axes)];
-            
-            enableAll();
-
+            if countOverlap == 0
+                allLines = [allLines, connectorLine(point1.ptID, point2.ptID, defaultMat, defaultWidth, defaultHeight, lnIDCount)];
+                lnIDCount = lnIDCount + 1;
+                allPlottedLines = [allPlottedLines, line([point1.x, point2.x],[point1.y, point2.y], 'Color', 'blue', 'LineWidth', 0.1 * defaultHeight, "Parent", axes)];
+            end
         end
     else
         obj.String = "Add Beam";
