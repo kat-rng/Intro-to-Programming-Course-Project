@@ -24,7 +24,7 @@ else
     if(timeStep < 0.05)
         reps = round(0.05/timeStep);
     end
-    for i= 1:1
+    for i= 1:reps
         jeb();
     end
 end
