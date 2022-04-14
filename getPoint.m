@@ -9,7 +9,7 @@ function [pointReturn, ptIndex] = getPoint(axes)
     % Get dimension of axes
     dimAxesX = get(axes, 'XLim');
     dimAxesY = get(axes, 'YLim');
-    maxDist = sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
+    maxDist = 3 * sqrt(((dimAxesX(1) - (dimAxesX(2)))/250)^2 + ((dimAxesY(1) - dimAxesY(2))/250)^2);
 
     while true
         % Test to see if click should be a valid option
