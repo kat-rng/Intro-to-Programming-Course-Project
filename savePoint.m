@@ -21,21 +21,19 @@ function savePoint(fig, changedPtIndex, newX, newY, newFixedPos, newFixedRot, ax
             delete(allPlottedLines(i));
             if allLines(i).point1.x <= allPoints(changedPtIndex).x
                 allLines(i) = connectorLine(allPoints(changedPtIndex).ptID, allLines(i).point2.ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
-                allPlottedLines(i) = line([newX, allLines(i).point2.x],[newY, allLines(i).point2.y], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height), "Parent", axes);
             else
                 allLines(i) = connectorLine(allLines(i).point1.ptID, allPoints(changedPtIndex).ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
-                allPlottedLines(i) = line([allLines(i).point1.x, newX],[allLines(i).point1.y, newY], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height), "Parent", axes);
             end
+            allPlottedLines(i) = line([allLines(i).point1.x, allLines(i).point2.x],[allLines(i).point1.y, allLines(i).point2.y], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height), "Parent", axes);
         end
         if getIndex(allLines(i).point2.ptID) == changedPtIndex
             delete(allPlottedLines(i));
             if allLines(i).point2.x <= allPoints(changedPtIndex).x
                 allLines(i) = connectorLine(allPoints(changedPtIndex).ptID, allLines(i).point1.ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
-                allPlottedLines(i) = line([newX, allLines(i).point1.x],[newY, allLines(i).point1.y], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height), "Parent", axes);
             else
                 allLines(i) = connectorLine(allLines(i).point1.ptID, allPoints(changedPtIndex).ptID, allLines(i).material, allLines(i).width, allLines(i).height, allLines(i).lnID);
-                allPlottedLines(i) = line([allLines(i).point1.x, newX],[allLines(i).point1.y, newY], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height), "Parent", axes);
             end
+            allPlottedLines(i) = line([allLines(i).point1.x, allLines(i).point2.x],[allLines(i).point1.y, allLines(i).point2.y], 'Color', 'blue', 'LineWidth', (0.1 * allLines(i).height), "Parent", axes);
         end
     end
 end
