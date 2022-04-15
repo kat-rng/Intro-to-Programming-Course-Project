@@ -18,19 +18,25 @@ function lineReturnIndex = getLine(axes)
         % Calc closest line - tests if point is closest to line or
         % endpoints and determines overall closest distance.
         for i = 1:l
+            % Test if perpendicular exists
             v1 = allLines(i).point1;
             v2 = allLines(i).point2;
             t =(-1) * ((((v1.x - x) * (v2.x - v1.x))+((v1.y - y) * (v2.y - v1.y))) / ((v2.x - v1.x)^2 + (v2.y - v1.y)^2));
             if (t <= 1) && (t >= 0)
                 if (v1.x == v2.x)
+                    % Gets distance between point and line if line is
+                    % vertical (m = inf)
                     dist = abs(v1.x - x);
                 else
+                    % Get distance between point and any other line (treat
+                    % as parallel)
                     m = allLines(i).slopeInit;
                     c1 = ((-1)* m * x)+y;
                     c2 = ((-1) * m * v1.x)+v1.y;
                     dist = (abs(c2-c1))/(sqrt(m^2 + 1));
                 end
             else
+                % Compare distances from endpoints if not perpendicular
                 d1 = sqrt((v2.x - x)^2 + (v2.y - y)^2);
                 d2 = sqrt((v1.x - x)^2 + (v1.y - y)^2);
                 dist = min(d1, d2);

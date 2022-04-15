@@ -50,6 +50,7 @@ function addLine(obj, axes)
             end
             colorPt(point1, "blue");
 
+            % Switch points if needed - convention
             if point2.x < point1.x
                 pointTemp = point2;
                 point2 = point1;
@@ -73,6 +74,7 @@ function addLine(obj, axes)
             end
         end
     else
+        % Cancel Operation
         obj.String = "Add Beam";
         enableAll();
         for i = 1:a

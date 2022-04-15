@@ -72,10 +72,12 @@ function editPoint(button, axes)
         % Wait for figure to close
         uiwait(editFig);
 
+        % End
         button.String = "Edit Point";
         enableAll();
         currentState = currentState + 1;
     else
+        % Cancel
         button.String = "Edit Point";
         enableAll();
     end

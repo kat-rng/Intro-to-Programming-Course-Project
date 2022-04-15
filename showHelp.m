@@ -28,12 +28,14 @@ function showHelp(button)
         "Click on this button to stop any simulation that is running. This will show the originally plotted values and allow you to edit the graph.";
         "Click on this button to remove all existing plotted values, including points and beams.";
         ];
+
+    % Format text for display
     windowText = [content(1,1), newline];
     for i = 1:10
         windowText = [windowText, titles(i, 1), content(i+1, 1), newline];
     end
 
-    % Create Window
+    % Create Window and show text in box that can be scrolled
     titleFontSize = appHeight * 0.025 * 1.25;
     textFontSize = appHeight * 0.0175 * 1.5;
     buttonFontSize = appHeight * 0.019;

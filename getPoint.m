@@ -31,12 +31,15 @@ function [pointReturn, ptIndex] = getPoint(axes)
         % Gets closest point to clicked point within range.
         [l, ~] = size(avaliablePts);
         if l == 0
+            % Restart if no points close enough
             continue
         elseif l == 1
+            % Returns point if one in array
             pointReturn = allPoints(avaliablePts(1, 2));
             ptIndex = avaliablePts(1, 2);
             break;
         else
+            % Returns smallest if multiple points close enough
             closestPt = min(avaliablePts);
             pointReturn = allPoints(closestPt(2));
             ptIndex = closestPt(2);

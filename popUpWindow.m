@@ -12,6 +12,7 @@ function resultWindow = popUpWindow(typeName)
     
     titleFontSize = appHeight * 0.024 * 2;
 
+    % Returns window with header to be used.
     resultWindow = figure("Name", typeName, "Position", [xCorner, yCorner, appWidth, appHeight]);
     winLabel = uicontrol(resultWindow, "Style", "text", "String", typeName + ": ", "Position", [0.35 * appWidth, 0.90 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", titleFontSize);
 

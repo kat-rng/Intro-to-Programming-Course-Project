@@ -85,6 +85,8 @@ editButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Stop Simula
 
 % Simulation Displays - To be shown during simulation for stresses, bream
 % breaks, and appropiate labels
+
+% Labels for force comparisons
 tensionLabel = uicontrol(mainWindow, "Style", "text", "String", "Tension Forces", "Position", [0.52 * appWidth, 0.17 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
 neutralLabel = uicontrol(mainWindow, "Style", "text", "String", "Neutral", "Position", [0.355 * appWidth, 0.17 * appHeight, 0.10 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
 compressionLabel = uicontrol(mainWindow, "Style", "text", "String", "Compression Forces", "Position", [0.1875 * appWidth, 0.17 * appHeight, 0.14 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
@@ -96,7 +98,8 @@ end
 for j = 1:10
     colorGradient(1, j) = rectangle("Parent", colorPlot, "FaceColor", [1, 0, (j/10)], "Position", [j,0,1,1], "Visible", "off");
 end
-colorPlot.Visible = "off";
+
+% Label for broken beams
 breakColor = uiaxes("Parent", mainWindow, "XLim", [0,1], "YLim", [0,1], "Position", [appWidth * 0.37, appHeight * 0.07, appWidth * 0.22, appHeight * 0.075], "Visible", "off");
 breakRectangleColor = rectangle("Parent", breakColor, "FaceColor", [1,1,0], "Position", [0,0,1,1], "Visible", "off");
 breakLabel = uicontrol(mainWindow, "Style", "text", "String", "Broken Beams:", "Position", [0.25 * appWidth, 0.085 * appHeight, 0.12 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
@@ -134,4 +137,5 @@ simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, 
 editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid, simulationDisplays);
 closeButton.Callback = @(btn, event) close(mainWindow);
 
+% Show help on startup
 showHelp(helpButton);

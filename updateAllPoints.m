@@ -6,6 +6,7 @@ function updateAllPoints()
     [~, a] = size(allPoints);
     [~, b] = size(allLines);
 
+    % Updates values of connected lines and adds masses for each point
     for i = 1:b
         for j = 1:a
             if allPoints(j).ptID == allLines(i).point1.ptID

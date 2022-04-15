@@ -65,10 +65,12 @@ function editLine(button, axes)
         % Wait for figure to close
         uiwait(editFig);
 
+        % Stop after successful run
         button.String = "Edit Beam";
         enableAll();
         currentState = currentState + 1;
     else
+        % Cancel
         button.String = "Edit Beam";
         enableAll();
     end

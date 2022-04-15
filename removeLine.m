@@ -34,6 +34,7 @@ function removeLine(obj, axes)
             allLines(lineIndex) = [];
         end
     else
+        % Cancel
         obj.String = "Remove Beam";
         enableAll();
     end

@@ -42,6 +42,7 @@ function addPoint(button, axes)
             end
         end
     else
+        % Cancel
         button.String = "Add Points";
         enableAll();
     end

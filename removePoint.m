@@ -50,6 +50,7 @@ function removePoint(obj, axes)
             allPoints(delIndex) = [];
         end
     else
+        % Cancel
         obj.String = "Remove Point";
         enableAll();
 end
