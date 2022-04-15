@@ -118,7 +118,7 @@ closeButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Close", "P
 timeSlider = uicontrol("Parent", mainWindow, "Style", "slider", "Position", [0.1875 * appWidth, 0.03 * appHeight, 0.5 * appWidth, 0.025 * appHeight], "Value", 0.001, "Max", 0.05, "Min", 0.001, "BackgroundColor", "#8BA7A9");
 timeDisp = uicontrol("Parent", mainWindow, "Style", "text", "Position", [0.32 * appWidth, 0.055 * appHeight, 0.16 * appWidth, 0.025 * appHeight], "String", "Timestep: " + num2str(timeSlider.Value));
 timeStep = timeSlider.Value;
-addlistener(timeSlider, "Value", "PostSet", @(~, ~) getTimeStep(timeSlider, timeDisp));
+sliderListener = addlistener(timeSlider, "Value", "PostSet", @(~, ~) getTimeStep(timeSlider, timeDisp));
 
 % All Button Array - For Disabling in Functions
 allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, lineGlobalMaterialButton, simulateButton, editButton, clearButton, helpButton, closeButton, timeSlider];
