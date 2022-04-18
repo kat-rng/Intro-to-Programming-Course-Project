@@ -17,6 +17,8 @@ function removePoint(obj, axes)
             % Check if points exist
             if a == 0
                 currentState = currentState + 1;
+                enableAll();
+                obj.String = "Remove Point";
                 return;
             end
             disableAll(obj);
