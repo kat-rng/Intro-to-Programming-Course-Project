@@ -119,11 +119,7 @@ helpButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Help", "Pos
 closeButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Close", "Position", [0.825 * appWidth, 0.08 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "#8BA7A9");
 
 % Time Step Slider
-<<<<<<< HEAD
-timeSlider = uicontrol("Parent", mainWindow, "Style", "slider", "Position", [0.15 * appWidth, 0.03 * appHeight, 0.5 * appWidth, 0.025 * appHeight], "Value", timeStepRange(1), "Max", timeStepRange(2), "Min", timeStepRange(1), "BackgroundColor", "#8BA7A9");
-=======
-timeSlider = uicontrol("Parent", mainWindow, "Style", "slider", "Position", [0.1875 * appWidth, 0.03 * appHeight, 0.5 * appWidth, 0.025 * appHeight], "Value", 0.001, "Max", 0.05, "Min", 0.001, "BackgroundColor", "#8BA7A9");
->>>>>>> 3fe0fa1d9134134953c6dfea1f56ec575cb975bc
+timeSlider = uicontrol("Parent", mainWindow, "Style", "slider", "Position", [0.1875 * appWidth, 0.03 * appHeight, 0.5 * appWidth, 0.025 * appHeight], "Value", timeStepRange(1), "Max", timeStepRange(2), "Min", timeStepRange(1), "BackgroundColor", "#8BA7A9");
 timeDisp = uicontrol("Parent", mainWindow, "Style", "text", "Position", [0.32 * appWidth, 0.055 * appHeight, 0.16 * appWidth, 0.025 * appHeight], "String", "Timestep: " + num2str(timeSlider.Value));
 timeStep = timeSlider.Value;
 sliderListener = addlistener(timeSlider, "Value", "PostSet", @(~, ~) getTimeStep(timeSlider, timeDisp));
