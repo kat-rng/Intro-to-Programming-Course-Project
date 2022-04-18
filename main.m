@@ -81,14 +81,16 @@ lineLabel = uicontrol(mainWindow, "Style", "text", "String", "Beam Functions", "
 lineAddButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Add Beam", "Position", [0.04 * appWidth, 0.65 * appHeight, 0.25 * appWidth, 0.05* appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 lineRemoveButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Remove Beam", "Position", [0.04 * appWidth, 0.6 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 lineEditButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Edit Beam", "Position", [0.04 * appWidth, 0.55 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
+lineGlobalMaterialButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Set Global Material", "Position", [0.04 * appWidth, 0.5 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 
 % Simulation Buttons
-simulateLabel = uicontrol(mainWindow, "Style", "text", "String", "Simulation Control", "Position", [0.015 * appWidth, 0.49 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
-simulateButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Start Simulation", "Position", [0.04 * appWidth, 0.45 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "green");
-editButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Stop Simulation and Edit", "Position", [0.04 * appWidth, 0.4 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "red");
+simulateLabel = uicontrol(mainWindow, "Style", "text", "String", "Simulation Control", "Position", [0.015 * appWidth, 0.44 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
+simulateButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Start Simulation", "Position", [0.04 * appWidth, 0.4 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "green");
+editButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Stop Simulation and Edit", "Position", [0.04 * appWidth, 0.35 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "red");
 
 % Simulation Displays - To be shown during simulation for stresses, bream
 % breaks, and appropiate labels
+% Labels for force comparisons
 tensionLabel = uicontrol(mainWindow, "Style", "text", "String", "Tension Forces", "Position", [0.52 * appWidth, 0.17 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
 neutralLabel = uicontrol(mainWindow, "Style", "text", "String", "Neutral", "Position", [0.355 * appWidth, 0.17 * appHeight, 0.10 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
 compressionLabel = uicontrol(mainWindow, "Style", "text", "String", "Compression Forces", "Position", [0.1875 * appWidth, 0.17 * appHeight, 0.14 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
@@ -100,7 +102,7 @@ end
 for j = 1:10
     colorGradient(1, j) = rectangle("Parent", colorPlot, "FaceColor", [1, 0, (j/10)], "Position", [j,0,1,1], "Visible", "off");
 end
-colorPlot.Visible = "off";
+% Label for broken beams
 breakColor = uiaxes("Parent", mainWindow, "XLim", [0,1], "YLim", [0,1], "Position", [appWidth * 0.37, appHeight * 0.07, appWidth * 0.22, appHeight * 0.075], "Visible", "off");
 breakRectangleColor = rectangle("Parent", breakColor, "FaceColor", [1,1,0], "Position", [0,0,1,1], "Visible", "off");
 breakLabel = uicontrol(mainWindow, "Style", "text", "String", "Broken Beams:", "Position", [0.25 * appWidth, 0.085 * appHeight, 0.12 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "Visible", "off");
@@ -117,13 +119,17 @@ helpButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Help", "Pos
 closeButton = uicontrol(mainWindow, "Style", "pushbutton", "String", "Close", "Position", [0.825 * appWidth, 0.08 * appHeight, 0.15 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor", "#8BA7A9");
 
 % Time Step Slider
+<<<<<<< HEAD
 timeSlider = uicontrol("Parent", mainWindow, "Style", "slider", "Position", [0.15 * appWidth, 0.03 * appHeight, 0.5 * appWidth, 0.025 * appHeight], "Value", timeStepRange(1), "Max", timeStepRange(2), "Min", timeStepRange(1), "BackgroundColor", "#8BA7A9");
+=======
+timeSlider = uicontrol("Parent", mainWindow, "Style", "slider", "Position", [0.1875 * appWidth, 0.03 * appHeight, 0.5 * appWidth, 0.025 * appHeight], "Value", 0.001, "Max", 0.05, "Min", 0.001, "BackgroundColor", "#8BA7A9");
+>>>>>>> 3fe0fa1d9134134953c6dfea1f56ec575cb975bc
 timeDisp = uicontrol("Parent", mainWindow, "Style", "text", "Position", [0.32 * appWidth, 0.055 * appHeight, 0.16 * appWidth, 0.025 * appHeight], "String", "Timestep: " + num2str(timeSlider.Value));
 timeStep = timeSlider.Value;
-addlistener(timeSlider, "Value", "PostSet", @(~, ~) getTimeStep(timeSlider, timeDisp));
+sliderListener = addlistener(timeSlider, "Value", "PostSet", @(~, ~) getTimeStep(timeSlider, timeDisp));
 
 % All Button Array - For Disabling in Functions
-allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, simulateButton, editButton, clearButton, helpButton, closeButton, timeSlider];
+allButtons = [pointAddButton, pointRemoveButton, pointEditButton, lineAddButton, lineRemoveButton, lineEditButton, lineGlobalMaterialButton, simulateButton, editButton, clearButton, helpButton, closeButton, timeSlider];
 
 % Establish Commands
 pointAddButton.Callback = @(btn, event) addPoint(event.Source, mainGrid);
@@ -132,10 +138,12 @@ pointEditButton.Callback = @(btn, event) editPoint(event.Source, mainGrid);
 lineAddButton.Callback = @(btn, event) addLine(event.Source, mainGrid);
 lineRemoveButton.Callback = @(btn, event) removeLine(event.Source, mainGrid);
 lineEditButton.Callback = @(btn, event) editLine(event.Source, mainGrid);
+lineGlobalMaterialButton.Callback = @(btn, event) setGlobalMat(event.Source);
 clearButton.Callback = @resetProgram;
 helpButton.Callback = @(btn, event) showHelp(event.Source);
 simulateButton.Callback = @(btn, event) simulationRun(event.Source, editButton, mainGrid, resultGrid, simulationDisplays);
 editButton.Callback = @(btn, event) stopSimulation(event.Source, mainGrid, resultGrid, simulationDisplays);
 closeButton.Callback = @(btn, event) close(mainWindow);
 
+% Show help on startup
 showHelp(helpButton);
