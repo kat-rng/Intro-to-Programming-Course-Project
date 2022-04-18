@@ -3,8 +3,6 @@ global points;
 global lines;
 global timeStep;
 
-timeStep = 0.05;
-
 if(isStarting==1)
     %TODO: add a pointer for what PtID to assign to any given new point
     % points(i,4) = x position of index i
@@ -100,10 +98,9 @@ function a = jeb()
     % Jeb is very good at figuring out how to simulate bridges so we hired
     % him. Be sure to thank him because we haven't paid him in months.
     global points;
+    global timeStep;
     a=0;
     
-    %May be changeable later but for now it will be hard coded
-    timeStep = 0.03;
     
     %Set all the forces to 0
     points(:,8:9)=0;
@@ -208,7 +205,6 @@ function force = applyAxial(iL, ptIndexes)
     %Calculate forces using the previously mentioned equations
     %Names of forces:   Area       Young'sMod   originalLength
     force = deflection*lines(iL,7)*lines(iL,9)/lines(iL,8);
-    
     
     %Find the previous force
     prevForce = lines(iL, 12)*lines(iL, 11);
