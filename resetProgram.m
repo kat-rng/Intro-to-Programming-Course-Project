@@ -12,15 +12,18 @@ function resetProgram(obj, ex)
     [~, a] = size(allPoints);
     [~, b] = size(allLines);
 
+    % Reset changing globals
     ptIDCount = 0;
     lnIdCount = 0;
 
+    % Clear points
     for i = 1:a
         allPoints(1) = [];
         delete(allPlottedPoints(1));
         allPlottedPoints(1) = [];
     end
 
+    % Clear lines
     for j = 1:b
         allLines(1) = [];
         delete(allPlottedLines(1));

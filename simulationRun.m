@@ -46,6 +46,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
                 try
                     delete(resultPlottedLines(j));
                 end
+                % Set points
                 pt1 = zeros(1,2);
                 pt2 = zeros(1,2);
                 for n = 1:p
@@ -56,6 +57,9 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
                         pt2 = [points(n, 4), points(n, 5)];
                     end
                 end
+
+                % Set color of the line based on the amount of tension or
+                % compression
                 color = [1.0, 0, 1.0];
                 if lines(j, 12) < 0
                     color = [1.0, 0, 1-abs(lines(j, 12))];
@@ -65,6 +69,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
                 if lines(j, 2) == -1000
                     color = [1,1,0];
                 end
+                % Plot
                 resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", color, "LineWidth", 1, "Parent", resultAxes);
             end
             pause(0.03);
