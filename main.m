@@ -36,10 +36,13 @@ editPresent = 0;
 
 %% Generate Materials
 %name, density, maxShear, maxAxial, youngs, shearMod, id
-wood = bridgeMaterial("Wood", 1500, 1, (2.4*10^6), 1010000, 1, 1);
-fakeWood = bridgeMaterial("Steel", 1500, 1, (2.4*10^7), 1010000*2, 1, 2);
-test = bridgeMaterial("Bedrock", 1500, 1, (2.4*10^10), 1010000*3, 1, 3);
-allMaterials = [wood, fakeWood, test];
+safeWood = bridgeMaterial("Safe Wood", 1500, 1, (2.4*10^7), 10100*10^2, 1, 1);
+realWood = bridgeMaterial("Real Wood", 1500, 1, (1000*10^6), 10100*10^6, 1, 2);
+
+safeSteel = bridgeMaterial("Safe Steel", 7100, 1, (2.4*10^7), 190*10^5, 1, 1);
+realSteel = bridgeMaterial("Real Steel", 7100, 1, (1000*10^6), 190*10^9, 1, 2);
+bedrock = bridgeMaterial("Bedrock", 1500, 1, (2.4*10^20), 190*10^5, 1, 3);
+allMaterials = [safeWood, realWood, safeSteel, realSteel, bedrock];
 
 %% Screen Generation
 % Default Screen Info
