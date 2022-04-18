@@ -53,7 +53,7 @@ function editLine(button, axes)
         % Material Values
         beamMatLabel = uicontrol(editFig, "Style", "text", "String", "Material: ", "Position", [0.2 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight], "FontSize", subTitleFontSize);
         beamMatValue = uicontrol(editFig, "Style", "popupmenu", "Position", [0.5 * appWidth, 0.6 * appHeight, 0.3 * appWidth, 0.1 * appHeight]);
-        beamMatValue.String = {allMaterials(1).name, allMaterials(2).name};
+        beamMatValue.String = {allMaterials(1:length(allMaterials)).name};
         beamMatValue.Value = getMatIndex(allLines(lineIndex).material.name);
 
         % Buttons
