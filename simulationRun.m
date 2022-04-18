@@ -67,7 +67,7 @@ function simulationRun(buttonSrc, editBtn, mainAxes, resultAxes, simulationDispl
                 end
                 resultPlottedLines(j) = line([pt1(1), pt2(1)], [pt1(2), pt2(2)], "Color", color, "LineWidth", 1, "Parent", resultAxes);
             end
-            pause(0.1);
+            pause(0.03);
     
             % Check if simulation should continue
             if isStarting == 0
