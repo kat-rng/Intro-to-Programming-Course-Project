@@ -3,7 +3,6 @@ function removeLine(obj, axes)
     global allPoints;
     global allLines;
     global allPlottedLines;
-    [~, l] = size(allLines);
     
     global currentState;
     currentState = currentState + 1;
@@ -11,7 +10,8 @@ function removeLine(obj, axes)
     
     if state == 1
         while state == 1
-            % Check if points exist
+            % Check if lines exist
+            [~, l] = size(allLines);
             if l == 0
                 currentState = currentState + 1;
                 enableAll();
