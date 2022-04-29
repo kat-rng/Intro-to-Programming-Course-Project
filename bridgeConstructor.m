@@ -78,8 +78,8 @@ pointEditButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Edit P
 
 % Line Button Generations
 lineLabel = uicontrol(mainWindow, "Style", "text", "String", "Beam Functions", "Position", [0.015 * appWidth, 0.69 * appHeight, 0.3 * appWidth, 0.05 * appHeight], "FontSize", subTitleFontSize);
-lineAddButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Add Beam", "Position", [0.04 * appWidth, 0.65 * appHeight, 0.25 * appWidth, 0.05* appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
-lineRemoveButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Remove Beam", "Position", [0.04 * appWidth, 0.6 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
+lineAddButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Add Beams", "Position", [0.04 * appWidth, 0.65 * appHeight, 0.25 * appWidth, 0.05* appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
+lineRemoveButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Remove Beams", "Position", [0.04 * appWidth, 0.6 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 lineEditButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Edit Beam", "Position", [0.04 * appWidth, 0.55 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 lineGlobalMaterialButton = uicontrol(mainWindow, "Style", "pushbutton", 'String', "Set Global Material", "Position", [0.04 * appWidth, 0.5 * appHeight, 0.25 * appWidth, 0.05 * appHeight], "FontSize", buttonFontSize, "BackgroundColor","#8BA7A9");
 

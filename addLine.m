@@ -75,7 +75,7 @@ function addLine(obj, axes)
         end
     else
         % Cancel Operation
-        obj.String = "Add Beam";
+        obj.String = "Add Beams";
         enableAll();
         for i = 1:a
             colorPt(allPoints(i), "blue");

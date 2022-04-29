@@ -15,7 +15,7 @@ function removeLine(obj, axes)
             if l == 0
                 currentState = currentState + 1;
                 enableAll();
-                obj.String = "Remove Beam";
+                obj.String = "Remove Beams";
                 return
             end
             disableAll(obj);
@@ -26,7 +26,7 @@ function removeLine(obj, axes)
                 lineIndex = getLine(axes);
             end
     
-            if obj.String == "Remove Beam"
+            if obj.String == "Remove Beams"
                 return;
             end
     
@@ -37,7 +37,7 @@ function removeLine(obj, axes)
         end
     else
         % Cancel
-        obj.String = "Remove Beam";
+        obj.String = "Remove Beams";
         enableAll();
     end
 end
